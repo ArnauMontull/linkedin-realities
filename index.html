@@ -13,22 +13,38 @@
       }
     </style>
   </head>
-  <body class="bg-[#f3f2f0] min-h-screen flex flex-col font-[system-ui,-apple-system,sans-serif] text-black/85">
+  <body class="bg-[#f3f2f0] min-h-screen flex flex-col font-[system-ui,-apple-system,sans-serif] text-black/85 antialiased">
 
     <div class="flex flex-1 w-full max-w-screen-xl mx-auto">
-      <main class="flex-1 flex flex-col items-center justify-center py-6 px-4">
+      
+      <div class="hidden lg:flex flex-col justify-start w-[160px] flex-none">
+        <div class="flex flex-col justify-start items-center pt-8">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'ca180dbc281c29305e55419fd520b3ff',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/ca180dbc281c29305e55419fd520b3ff/invoke.js"></script>
+        </div>
+      </div>
 
-        <div class="text-center mb-8 select-none mt-4">
-          <h1 class="text-4xl sm:text-5xl font-extrabold text-black/85 mb-3 tracking-wide">Linked Off: The Corporate Bullshit Antidote</h1>
-          <p class="text-lg sm:text-xl font-medium text-[#666666]">Translating the corporate blah-blah-blah so you don’t have to. What the f*ck does it mean in the real world?</p>
+      <main class="flex-1 flex flex-col items-center justify-center py-10 px-4 sm:px-6">
+
+        <div class="text-center mb-10 select-none mt-2 sm:mt-0 px-2">
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-black/85 mb-3 tracking-tight leading-[1.1]">Linked Off: The Corporate Bullshit Antidote</h1>
+          <p class="text-lg sm:text-xl font-medium text-[#666666] max-w-3xl mx-auto leading-relaxed">Translating the corporate blah-blah-blah so you don’t have to. What the f*ck does it mean in the real world?</p>
         </div>
 
-        <div id="frase-corporativa" class="text-2xl sm:text-3xl font-semibold text-black/85 bg-white border border-[#e0e0e0] py-10 px-6 rounded-lg mb-8 w-full max-w-2xl text-center transition-all min-h-[100px] flex items-center justify-center">
+        <div id="frase-corporativa" class="text-xl sm:text-2xl md:text-3xl font-semibold text-black/85 bg-white border border-[#e0e0e0] py-10 px-5 sm:px-8 rounded-xl mb-8 w-full max-w-2xl text-center leading-relaxed break-words shadow-sm shadow-black/5">
         </div>
 
-        <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mb-8"></div>
+        <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mb-8"></div>
 
-        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border border-[#e0e0e0] bg-white rounded-lg px-4 py-6"></div>
+        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5"></div>
 
         <div class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
@@ -36,6 +52,21 @@
         </div>
 
       </main>
+
+      <div class="hidden lg:flex flex-col justify-start w-[160px] flex-none">
+        <div class="flex flex-col justify-start items-center pt-8">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'ca180dbc281c29305e55419fd520b3ff',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/ca180dbc281c29305e55419fd520b3ff/invoke.js"></script>
+        </div>
+      </div>
     </div>
 
     <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
@@ -109,7 +140,7 @@
           const btn = document.createElement('button');
           btn.type = "button";
           btn.className =
-            "rounded-full bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-5 py-4 w-full transition-colors text-left text-base sm:text-lg focus:outline-none";
+            "rounded-full bg-white border border-[#e0e0e0] hover:border-[#0a66c2] hover:bg-[#eaf3ff] text-[#0a66c2] font-extrabold px-5 py-4 w-full transition-colors text-left text-base sm:text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2";
           btn.textContent = "🡆 "+opcion.texto;
           btn.onclick = () => responder(i, btn);
           opcionesEl.appendChild(btn);
@@ -123,10 +154,10 @@
         Array.from(opcionesEl.children).forEach((bot, i) => {
           if (i === indiceCorrecto) {
             bot.className =
-              "rounded-full bg-[#16a34a] text-white px-5 py-4 w-full transition-colors text-left text-base sm:text-lg";
+              "rounded-full bg-[#ecfdf5] border border-[#22c55e]/40 text-[#166534] px-5 py-4 w-full transition-colors text-left text-base sm:text-lg shadow-sm shadow-black/5";
           } else if (i === elegida && i !== indiceCorrecto) {
             bot.className =
-              "rounded-full bg-[#dc2626] text-white px-5 py-4 w-full transition-colors text-left text-base sm:text-lg";
+              "rounded-full bg-[#fef2f2] border border-[#ef4444]/40 text-[#991b1b] px-5 py-4 w-full transition-colors text-left text-base sm:text-lg shadow-sm shadow-black/5";
           } else {
             bot.className =
               "rounded-full bg-white border border-[#e0e0e0] text-[#666666] px-5 py-4 w-full opacity-70 transition-colors text-left text-base sm:text-lg";
@@ -138,24 +169,25 @@
         const correcto = (elegida === indiceCorrecto);
         const msg = document.createElement('div');
         msg.className =
-          "text-2xl font-extrabold px-4 py-3 rounded-lg border border-[#e0e0e0] bg-white " +
+          "text-xl sm:text-2xl font-extrabold px-5 py-4 rounded-xl border border-[#e0e0e0] bg-white shadow-sm shadow-black/5 " +
           (correcto ? "text-[#166534] border-[#22c55e]/40 bg-[#ecfdf5]" : "text-[#991b1b] border-[#ef4444]/40 bg-[#fef2f2]");
         msg.textContent = correcto ? "✅ Boom! You’re officially a corporate cynic!" : "❌ Oof... you actually fell for that? Try again, rookie.";
         resultadoEl.innerHTML = "";
         resultadoEl.appendChild(msg);
 
         const sig = document.createElement('button');
-        sig.className = "bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold text-lg py-3 px-8 mt-4 rounded-full transition-colors";
+        sig.className = "bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold text-lg py-3 px-8 mt-4 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2";
         sig.textContent = "Next Load of Crap →";
         sig.onclick = mostrarNuevaPregunta;
         resultadoEl.appendChild(sig);
 
         const viral = document.createElement('a');
         const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (Linked Off: The Corporate Bullshit Antidote)');
-        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://arnaumontull.github.io/linkedin-realities/`;
+        // ENLACE ACTUALIZADO AL NUEVO DOMINIO:
+        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://thelinkedoff.com`;
         viral.target = "_blank";
         viral.rel = "noopener";
-        viral.className = "block mt-4 bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-6 py-3 rounded-full uppercase tracking-wide transition-colors flex items-center gap-2";
+        viral.className = "block mt-4 bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-6 py-3 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 flex items-center gap-2";
         viral.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg> Spread this corporate poison on X`;
         resultadoEl.appendChild(viral);
       }
