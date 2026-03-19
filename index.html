@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LinkedIn Realities: Parodia Oscura</title>
+    <title>Linked Off: The Corporate Bullshit Antidote</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       #ad-bottom {
@@ -13,7 +13,7 @@
       }
     </style>
   </head>
-  <body class="bg-white min-h-screen flex flex-col">
+  <body class="bg-gradient-to-b from-red-50 via-white to-white min-h-screen flex flex-col">
 
     <div class="flex flex-1 w-full max-w-screen-xl mx-auto">
 
@@ -22,16 +22,16 @@
       <main class="flex-1 flex flex-col items-center justify-center py-6 px-4">
 
         <div class="text-center mb-8 select-none mt-4">
-          <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-800 mb-3 tracking-wide drop-shadow-sm">LinkedIn Realities</h1>
-          <p class="text-lg sm:text-xl font-medium text-gray-500">¿Qué hay detrás de la <span class="italic font-bold text-blue-600">frase corporativa</span>?</p>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-black mb-3 tracking-wide drop-shadow-sm">Linked Off: The Corporate Bullshit Antidote</h1>
+          <p class="text-lg sm:text-xl font-medium text-gray-700">Translating the corporate blah-blah-blah so you don’t have to. What the f*ck does it mean in the real world?</p>
         </div>
 
-        <div id="frase-corporativa" class="text-2xl sm:text-3xl font-semibold text-blue-900 bg-blue-50 border-2 border-blue-200 py-8 px-6 rounded-xl shadow-md mb-8 w-full max-w-2xl text-center transition-all min-h-[100px] flex items-center justify-center">
+        <div id="frase-corporativa" class="text-2xl sm:text-3xl font-semibold text-white bg-black border-4 border-red-600 border-dashed py-8 px-6 rounded-2xl shadow-[8px_8px_0_rgba(239,68,68,0.35)] mb-8 w-full max-w-2xl text-center transition-all min-h-[100px] flex items-center justify-center">
         </div>
 
         <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mb-8"></div>
 
-        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px]"></div>
+        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border-4 border-black bg-white/70 backdrop-blur rounded-2xl px-4 py-6"></div>
 
         <div class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
@@ -50,30 +50,30 @@
         {
           linkedin: "I’m passionate about supporting and mentoring the next generation of female leaders.",
           opciones: [
-            "Me gustan las chicas jóvenes",
-            "Me gusta hacer mansplaining",
-            "Quiero ligar en la oficina",
-            "Soy un sociópata pero sé sonreír"
+            "I’m into young girls",
+            "I enjoy doing mansplaining",
+            "I want to flirt in the office",
+            "I’m a sociopath, but I can smile on cue"
           ],
           correcta: 0
         },
         {
           linkedin: "I'm excited to pivot my career and take on new challenges in a dynamic environment.",
           opciones: [
-            "Me han despedido (otra vez)",
-            "No tengo ni idea de lo que hago",
-            "Odio mi trabajo pero aparento entusiasmo",
-            "Me obligaron a escribir esto"
+            "They canned me again",
+            "I have no clue what I’m doing",
+            "I hate my job but I’m acting enthusiastic",
+            "They forced me to write this"
           ],
           correcta: 0
         },
         {
           linkedin: "We’re committed to leveraging synergy to deliver value-added solutions.",
           opciones: [
-            "No sabemos lo que vendemos",
-            "Juntamos dos departamentos para despedir gente",
-            "Queríamos usar palabras bonitas",
-            "Nadie entiende de qué hablamos"
+            "We have no idea what we’re selling",
+            "We merged departments to fire people",
+            "We just wanted to sound fancy",
+            "Nobody understands what we’re saying"
           ],
           correcta: 1
         },
@@ -104,7 +104,7 @@
         yaRespondido = false;
         resultadoEl.innerHTML = "";
         fraseActual = obtenerFraseAleatoria();
-        fraseEl.textContent = "💼 " + fraseActual.linkedin;
+        fraseEl.textContent = "🤮 " + fraseActual.linkedin;
 
         opcionesMezcladas = mezclarOpciones(fraseActual.opciones);
         indiceCorrecto = opcionesMezcladas.findIndex(op => op.index === fraseActual.correcta);
@@ -114,7 +114,7 @@
           const btn = document.createElement('button');
           btn.type = "button";
           btn.className =
-            "rounded-xl border-2 border-gray-200 bg-white hover:bg-blue-50 hover:border-blue-300 active:bg-blue-100 text-gray-800 px-4 py-4 w-full font-semibold shadow-sm transition-all text-left text-base sm:text-lg focus:outline-none";
+            "rounded-2xl border-4 border-black bg-white hover:bg-red-50 hover:border-red-500 active:bg-red-100 text-gray-900 px-4 py-4 w-full font-extrabold shadow-[4px_4px_0_rgba(0,0,0,1)] transition-all text-left text-base sm:text-lg focus:outline-none";
           btn.textContent = "🡆 "+opcion.texto;
           btn.onclick = () => responder(i, btn);
           opcionesEl.appendChild(btn);
@@ -126,39 +126,46 @@
         yaRespondido = true;
 
         Array.from(opcionesEl.children).forEach((bot, i) => {
-          bot.classList.remove("border-blue-500", "hover:bg-blue-50", "hover:border-blue-300", "bg-green-100", "bg-red-100", "border-red-400", "ring-2", "ring-blue-200", "border-gray-200", "opacity-50");
+          bot.classList.remove(
+            "border-black", "bg-white",
+            "hover:bg-red-50", "hover:border-red-500", "active:bg-red-100",
+            "bg-green-100", "bg-red-100", "bg-gray-100",
+            "border-green-500", "border-red-500", "border-gray-600",
+            "ring-2", "ring-green-200", "ring-blue-200",
+            "opacity-50"
+          );
           if (i === indiceCorrecto) {
             bot.classList.add("border-green-500", "bg-green-100", "ring-2", "ring-green-200");
           } else if (i === elegida && i !== indiceCorrecto) {
             bot.classList.add("border-red-500", "bg-red-100");
           } else {
-             bot.classList.add("opacity-50", "border-gray-200");
+             bot.classList.add("opacity-50", "border-gray-600", "bg-gray-100");
           }
           bot.disabled = true;
-          bot.classList.remove("hover:bg-blue-50");
+          bot.classList.remove("hover:bg-red-50");
           bot.style.cursor = "default";
         });
 
         const correcto = (elegida === indiceCorrecto);
         const msg = document.createElement('div');
-        msg.className = "text-2xl font-black " + (correcto ? "text-green-600" : "text-red-600");
-        msg.textContent = correcto ? "✅ ¡Correcto! ¡Eres un cínico de pro!" : "❌ Incorrecto. Pero seguro que lo harías mejor que RRHH.";
+        msg.className = "text-2xl font-black border-4 border-black bg-white px-4 py-3 rounded-2xl shadow-[4px_4px_0_rgba(0,0,0,1)] " + (correcto ? "text-green-700 border-green-600" : "text-red-700 border-red-600");
+        msg.textContent = correcto ? "✅ Boom! You’re officially a corporate cynic!" : "❌ Oof... you actually fell for that? Try again, rookie.";
         resultadoEl.innerHTML = "";
         resultadoEl.appendChild(msg);
 
         const sig = document.createElement('button');
-        sig.className = "bg-blue-700 hover:bg-blue-800 text-white font-extrabold text-lg py-3 px-8 mt-4 rounded-xl shadow-lg transition-transform hover:scale-105";
-        sig.textContent = "Siguiente Frase →";
+        sig.className = "bg-black hover:bg-gray-900 text-white border-4 border-red-600 font-extrabold text-lg py-4 px-8 mt-4 rounded-2xl shadow-[6px_6px_0_rgba(239,68,68,0.35)] transition-transform hover:scale-[1.01]";
+        sig.textContent = "Next Load of Crap →";
         sig.onclick = mostrarNuevaPregunta;
         resultadoEl.appendChild(sig);
 
         const viral = document.createElement('a');
-        const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (En la parodia oscura de LinkedIn)');
+        const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (Linked Off: The Corporate Bullshit Antidote)');
         viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://arnaumontull.github.io/linkedin-realities/`;
         viral.target = "_blank";
         viral.rel = "noopener";
-        viral.className = "block mt-4 bg-black hover:bg-gray-800 text-white font-bold px-6 py-3 rounded-xl uppercase tracking-wider shadow-xl transition-transform hover:scale-105 flex items-center gap-2";
-        viral.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg> Compartir en X`;
+        viral.className = "block mt-4 bg-black hover:bg-gray-900 text-white font-extrabold px-6 py-4 rounded-2xl border-4 border-black uppercase tracking-wider shadow-[6px_6px_0_rgba(0,0,0,1)] transition-transform hover:scale-[1.01] flex items-center gap-2";
+        viral.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg> Spread this corporate poison on X`;
         resultadoEl.appendChild(viral);
       }
 
