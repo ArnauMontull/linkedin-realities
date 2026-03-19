@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/webp" href="image.webp" />
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+    <script>
+// Replace these placeholders with your Firebase project values.
+const firebaseConfig = {
+        apiKey: "AIzaSyAwYEuwFTLZltw2JJ6-jslPl4m9dxyT5B8",
+        authDomain: "linkedoff-7b689.firebaseapp.com",
+        projectId: "linkedoff-7b689",
+        storageBucket: "linkedoff-7b689.firebasestorage.app",
+        messagingSenderId: "121071844762",
+        appId: "1:121071844762:web:cb48a4618ac12f2aa9ce23",
+        measurementId: "G-1YTQEGW74B" // Opcional, però el pots deixar
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      window.__firebaseAuth = firebase.auth();
+      window.__firebaseDb = firebase.firestore();
+      window.__firebaseGoogleProvider = new firebase.auth.GoogleAuthProvider();
+    </script>
     <title>Linked Off: The Corporate Bullshit Antidote</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -39,7 +59,7 @@
           <button type="button" id="nav-jobs" data-toast="Error: Career path not found" class="text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-colors px-2 py-2 rounded-full">Jobs</button>
           <button type="button" id="nav-messages" data-toast="Messages are delivered in corporate silence." class="text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-colors px-2 py-2 rounded-full">Messages</button>
           <button type="button" id="nav-alerts" data-toast="Alerts loaded. None of them matter." class="text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-colors px-2 py-2 rounded-full">Alerts</button>
-          <button type="button" id="nav-me" data-toast="You're never retiring, keep scrolling." class="text-sm font-semibold text-white bg-white/15 hover:bg-white/25 transition-colors px-3 py-2 rounded-full">Me</button>
+          <button type="button" id="nav-me" class="text-sm font-semibold text-white bg-white/15 hover:bg-white/25 transition-colors px-3 py-2 rounded-full">Login</button>
         </nav>
       </div>
     </header>
@@ -57,19 +77,23 @@
         <div class="bg-white border border-[#e0e0e0] rounded-lg shadow-sm shadow-black/5 overflow-hidden">
           <div class="h-20 bg-[#0a66c2]/10"></div>
           <div class="px-3 pb-3 -mt-4">
-            <div class="w-10 h-10 rounded-full bg-[#e0e0e0] border-2 border-white shadow-sm shadow-black/5"></div>
-            <div class="mt-2 font-extrabold text-black/85 text-[12px] leading-tight">Linked Off</div>
-            <div class="text-[11px] text-[#666666] font-medium mt-1 leading-tight">Connections</div>
+            <img
+              id="sidebar-avatar"
+              alt="Profile avatar"
+              class="w-10 h-10 rounded-full bg-[#e0e0e0] border-2 border-white shadow-sm shadow-black/5 object-cover"
+              src=""
+            />
+            <div id="sidebar-display-name" class="mt-2 font-extrabold text-black/85 text-[12px] leading-tight">Linked Off</div>
+            <div id="sidebar-rank" class="text-[11px] text-[#666666] font-medium mt-1 leading-tight">Unpaid Intern</div>
             <div class="mt-2 flex items-center justify-between gap-2">
               <div
                 id="connections-tile"
-                data-toast="500 people who don't actually like you."
                 role="button"
                 tabindex="0"
                 class="flex-1 bg-[#f3f2f0] border border-[#e0e0e0] rounded-md px-2 py-1 text-center cursor-pointer hover:bg-[#eaf3ff] hover:border-[#0a66c2] transition-colors"
               >
-                <div class="font-extrabold text-black/85 text-[12px]">500</div>
-                <div class="text-[10px] text-[#666666]">Connections</div>
+                <div id="synergy-points-value" class="font-extrabold text-black/85 text-[12px]">0</div>
+                <div id="synergy-points-label" class="text-[10px] text-[#666666]">Synergy Points</div>
               </div>
             </div>
           </div>
@@ -234,10 +258,9 @@
 
     <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
 
-    <script>
-      const frasesDiccionario = [
+    <script>const frasesDiccionario = [
         {
-          linkedin: "I am looking to maximize my professional output and achieve a high-impact release of my creative energy within the workplace.",
+          linkedin: "I am looking to maximize my professional output 📈 and achieve a high-impact release of my creative energy within the workplace. 💡",
           opciones: [
             "I want to bust a nut at work",
             "I'm going to scream in the supply closet",
@@ -247,7 +270,7 @@
           correcta: 0
         },
         {
-          linkedin: "The administrative professional at the reception desk possesses an exceptional level of aesthetic appeal and professional charisma.",
+          linkedin: "The administrative professional at the reception desk possesses an exceptional level of aesthetic appeal and professional charisma. ✨👔",
           opciones: [
             "The receptionist is a baddie.",
             "I think the receptionist is stealing my pens",
@@ -257,7 +280,7 @@
           correcta: 0
         },
         {
-          linkedin: "I'm looking to explore some adult-oriented content and diversify my visual media consumption while staying productive in the office.",
+          linkedin: "I'm looking to explore some adult-oriented content 🎬 and diversify my visual media consumption while staying productive in the office. 💻",
           opciones: [
             "I want to watch a porn movie at work",
             "I'm binge-watching Netflix in the stall",
@@ -267,7 +290,7 @@
           correcta: 0
         },
         {
-          linkedin: "Reflecting on leadership and legacy today. 🕊️ I want to honor the memory of my father, who passed away on September 11, 2001. He was a truly exceptional pilot, dedicated to his craft and his journey. His impact continues to inspire. #Legacy #Inspiration #Leadership #Aviation",
+          linkedin: "Reflecting on leadership and legacy today. 🕊️ I want to honor the memory of my father, who passed away on September 11, 2001. He was a truly exceptional pilot ✈️, dedicated to his craft and his journey. His impact continues to inspire. #Legacy #Inspiration #Leadership #Aviation",
           opciones: [
             "Thinking about my dad today. He was one of the 9/11 hijackers.",
             "My dad was a flight simulator addict",
@@ -277,7 +300,7 @@
           correcta: 0
         },
         {
-          linkedin: "Navigating a high-intensity recovery phase today while practicing active listening and maintaining full presence during our strategic alignment session.",
+          linkedin: "Navigating a high-intensity recovery phase today 🔋 while practicing active listening and maintaining full presence during our strategic alignment session. 🎯",
           opciones: [
             "I'm hangover while trying to look like I'm actually paying attention in this meeting.",
             "I'm practicing meditation by sleeping with my eyes open.",
@@ -287,7 +310,7 @@
           correcta: 0
         },
         {
-          linkedin: "Today we made the difficult but necessary decision to streamline our operations and optimize our talent density. This strategic pivot allows us to reinvest in high-impact leadership assets and ensure our executive vision remains world-class. Grateful for the journey and excited for the next chapter of growth! #Leadership #Agility #FutureOfWork",
+          linkedin: "Today we made the difficult but necessary decision to streamline our operations and optimize our talent density. 📉 This strategic pivot allows us to reinvest in high-impact leadership assets and ensure our executive vision remains world-class. Grateful for the journey and excited for the next chapter of growth! 🌱 #Leadership #Agility #FutureOfWork",
           opciones: [
             "We just fired 500 people to buy the CEO a new yacht.",
             "Everyone is getting a 200% pay raise",
@@ -297,7 +320,7 @@
           correcta: 0
         },
         {
-          linkedin: "I’m so grateful for the growth opportunities and unique challenges I encountered during my time there. While I’ve decided to move on to a new chapter, I’m excited to see how the organization evolves and wish the team nothing but the best in their future endeavors! #NewBeginnings #GrowthMindset #ProfessionalJourney",
+          linkedin: "I’m so grateful for the growth opportunities and unique challenges I encountered during my time there. 🙌 While I’ve decided to move on to a new chapter, I’m excited to see how the organization evolves and wish the team nothing but the best in their future endeavors! 🚀 #NewBeginnings #GrowthMindset #ProfessionalJourney",
           opciones: [
             "I hated every second of that toxic dump and I hope it burns down.",
             "I am becoming a professional sleeper",
@@ -307,7 +330,7 @@
           correcta: 0
         },
         {
-          linkedin: "We believe in a 'Work Hard, Play Hard' culture where our employees are like family.",
+          linkedin: "We believe in a 'Work Hard, Play Hard' culture 🏓 where our employees are like family. 🤝",
           opciones: [
             "We expect you to work eighty hours a week and have zero boundaries, but we'll buy a round of cheap beers once a month to pretend we actually like each other.",
             "We actually pay you in hugs and kisses",
@@ -317,7 +340,7 @@
           correcta: 0
         },
         {
-          linkedin: "I am passionate about mentoring and supporting the next generation of female leaders.",
+          linkedin: "I am passionate about mentoring and supporting the next generation of female leaders. 🌟👩‍💼",
           opciones: [
             "I like minor girls",
             "I enjoy doing mansplaining",
@@ -327,7 +350,7 @@
           correcta: 0
         },
         {
-          linkedin: "I’m thrilled to share that I’ve just completed a high-intensity, 5kg weight-loss sprint! 🚀 It wasn’t always easy—there were some messy challenges along the way—but through sheer resilience and staying regular with my goals, I’ve emerged lighter, leaner, and ready to tackle the next big project. Health is a journey, and sometimes you just have to flush out the old to make room for the new. Grateful for the process! #Resilience #WellnessJourney #Transformation #GrowthMindset",
+          linkedin: "I’m thrilled to share that I’ve just completed a high-intensity, 5kg weight-loss sprint! 🚀 It wasn’t always easy—there were some messy challenges along the way—but through sheer resilience and staying regular with my goals 🏃‍♂️, I’ve emerged lighter, leaner, and ready to tackle the next big project. Health is a journey, and sometimes you just have to flush out the old to make room for the new. 🚽 Grateful for the process! #Resilience #WellnessJourney #Transformation #GrowthMindset",
           opciones: [
             "I just survived a massive diarrhea where I lost 5 kilos",
             "I just finished a 5km marathon in the middle of a stomach bug",
@@ -337,7 +360,7 @@
           correcta: 0
         },
         {
-          linkedin: "I'm currently navigating some complex regulatory challenges regarding my fiscal contributions and exploring new opportunities in compliance management. #GrowthMindset #FinancialTransparency #NewBeginnings",
+          linkedin: "I'm currently navigating some complex regulatory challenges regarding my fiscal contributions 📊 and exploring new opportunities in compliance management. 💼 #GrowthMindset #FinancialTransparency #NewBeginnings",
           opciones: [
             "I’m broke as hell and the tax man is hunting me down",
             "I'm looking for a new accountant to help with my offshore taxes",
@@ -347,7 +370,7 @@
           correcta: 0
         },
         {
-          linkedin: "Fueling my high-performance morning routine with a powerful energy boost to maximize productivity and crush my KPIs before the workday even begins. #Grindset #PeakPerformance #MorningRitual",
+          linkedin: "Fueling my high-performance morning routine with a powerful energy boost ⚡ to maximize productivity and crush my KPIs before the workday even begins. 📈 #Grindset #PeakPerformance #MorningRitual",
           opciones: [
             "Before going to work, I always do a line of coke",
             "I drink five double espressos before my first morning meeting",
@@ -357,7 +380,7 @@
           correcta: 0
         },
         {
-          linkedin: "Exploring new ways to decentralize our physical assets and optimize the logistics of high-value equipment. Just completed a successful stealth acquisition! 💼📦 #AssetManagement #StrategicGrowth #SupplyChain",
+          linkedin: "Exploring new ways to decentralize our physical assets and optimize the logistics of high-value equipment. 🏢 Just completed a successful stealth acquisition! 💼📦 #AssetManagement #StrategicGrowth #SupplyChain",
           opciones: [
             "I just stole a bunch of monitors and office chairs from the warehouse",
             "I'm moving our servers to a new cloud provider to save costs",
@@ -367,7 +390,7 @@
           correcta: 0
         },
         {
-          linkedin: "Navigating a challenging sensory environment today while maintaining a laser-focus on my strategic objectives. Embracing the silence to foster deep work and cognitive clarity. 🧘‍♂️✨ #Mindfulness #DeepWork #Focused",
+          linkedin: "Navigating a challenging sensory environment today 🕶️ while maintaining a laser-focus on my strategic objectives. Embracing the silence to foster deep work and cognitive clarity. 🧘‍♂️✨ #Mindfulness #DeepWork #Focused",
           opciones: [
             "I’m hungover as hell and the office lights are killing me",
             "I'm trying out a new meditation app during my lunch break",
@@ -377,7 +400,7 @@
           correcta: 0
         },
         {
-          linkedin: "Sometimes, the hustle requires us to find moments of stillness in the most unexpected places. Today, I took \"recharging\" to a whole new level by accidentally falling asleep during a brief bio-break. It’s a powerful reminder that even high-performers need to listen to their bodies and prioritize rest to maintain peak productivity. Embrace the grind, but don't forget to pause. #SelfCare #ProductivityHacks #WorkLifeBalance #Authenticity #GrowthMindset",
+          linkedin: "Sometimes, the hustle requires us to find moments of stillness in the most unexpected places. 🔋 Today, I took 'recharging' to a whole new level by accidentally falling asleep during a brief bio-break. 💤 It’s a powerful reminder that even high-performers need to listen to their bodies and prioritize rest to maintain peak productivity. Embrace the grind, but don't forget to pause. 🛑 #SelfCare #ProductivityHacks #WorkLifeBalance #Authenticity #GrowthMindset",
           opciones: [
             "I fell asleep while I was taking a shit",
             "I passed out in the elevator after a 12-hour shift",
@@ -385,11 +408,252 @@
             "I accidentally locked myself in the bathroom and took a nap"
           ],
           correcta: 0
+        },
+        {
+          linkedin: "Today I learned a valuable lesson in corporate agility and stakeholder management. 🚆 While navigating a high-traffic environment (the subway), I encountered an unexpected internal pressure release. 💨 Instead of letting the situation disrupt the flow, I proactively pivoted and redirected the narrative toward a more senior demographic nearby. 🧓 It’s all about taking ownership of the outcome, even when you aren't taking ownership of the input. Leadership is about managing perceptions and staying agile under pressure. 🎭 #AgileLeadership #StrategicPivoting #PersonalBranding #CorporateCulture",
+          opciones: [
+            "I farted on the subway and blamed an old lady for it",
+            "I stood up for an elderly woman who was being harassed on the train",
+            "I accidentally spilled my coffee on a senior executive during my commute",
+            "I convinced a group of commuters to change their route due to a delay"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I’m currently leaning into the vulnerability of navigating complex interpersonal dynamics and cross-gender professional networking. 🗣️ It’s a growth opportunity to overcome these internal blockers and foster a more inclusive mindset for future leadership. 🤝 #GrowthMindset #Vulnerability #ProfessionalDevelopment",
+          opciones: [
+            "I'm actually terrified of women",
+            "I'm struggling to manage a team of female executives",
+            "I've been accused of excluding women from networking events",
+            "I'm attending a seminar on gender-neutral workplace communication"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "Today I encountered an unexpected challenge that completely disrupted my comfort zone. 🚨 It was a moment of raw vulnerability that forced me to pivot instantly and prioritize immediate problem-solving. This experience reminded me that in both life and leadership, sometimes things get messy 🧻, but it's how we handle the cleanup and move forward with resilience that truly defines our professional growth. 🧼 #Resilience #GrowthMindset #Agility #LessonsLearned",
+          opciones: [
+            "I just shat my pants",
+            "I accidentally deleted the entire company database",
+            "I had a massive mental breakdown during a keynote",
+            "I got fired for a mistake I didn't commit"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "🚀 Big news! We’re thrilled to announce that we’ve officially launched a game-changing new feature. 💡 This is a huge milestone for our team as we continue to innovate and deliver more value to our community. Stay tuned for more updates! #Innovation #ProductLaunch #GrowthMindset #TechUpdate",
+          opciones: [
+            "We launched a new feature",
+            "We finally fixed a bug that was crashing the app for months",
+            "We are raising our subscription prices starting next week",
+            "We just hired a new CEO with a vision for the future"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I’m excited to announce that I’m starting a new chapter! After a period of high-impact, disruptive engagement with senior leadership and bringing some serious heat to the workplace, I’ve decided to transition out of my current role. I’m now a free agent, pivoting toward new opportunities where I can truly make an explosive impact. #OpenToWork #NewBeginnings #DisruptiveInnovation #CareerTransition",
+          opciones: [
+            "I got fired for punching my boss and setting fire to the office",
+            "I quit my job after a heated argument about the company's innovation strategy",
+            "I was laid off after a major merger that caused a lot of friction in the team",
+            "I decided to leave the company to launch my own high-growth startup"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "Taking some much-needed time for strategic reflection and mental recalibration this morning. ☕ Sometimes, the most productive thing you can do is embrace the power of stillness to recharge your creative batteries. 🔋 How do you prioritize mindfulness in your busy schedule? Let’s connect and share insights! 👇 #Mindfulness #SelfCare #Productivity #MentalHealth #Leadership #Recharge",
+          opciones: [
+            "I am sitting idle in my couch this morning and doing nothing",
+            "I’m currently between jobs and trying to stay positive",
+            "I’m attending a virtual retreat on leadership and emotional intelligence",
+            "I just quit my high-stress job to become a full-time life coach"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "Today, I was reminded of the importance of staying agile and being prepared for the unexpected. 🚗💨 While navigating my daily route, I had a high-impact encounter with a young stakeholder. It was a moment that forced me to pivot instantly, assess the situation under extreme pressure, and practice radical accountability. In the corporate world, we often talk about \"hitting our targets,\" but sometimes life throws us a curveball that requires a complete recalibration of our safety protocols. Key takeaways: 1. Resilience is non-negotiable. 2. Always keep your eyes on the road ahead, but be ready to brake for the next generation. 3. Impact is measurable, but growth is intentional. Grateful for the learning opportunity and the chance to refine my risk mitigation skills. Onward and upward! 📈✨ #Leadership #CrisisManagement #AgileMindset #Accountability #SafetyFirst #GrowthOpportunity",
+          opciones: [
+            "I hit a child with my car",
+            "I had a tough meeting with a junior intern who challenged my leadership",
+            "I crashed my car into a school bus while checking my emails",
+            "I was forced to lay off the youngest members of my department"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I’m thrilled to announce that I’m starting a new chapter! 🚀 I’ve recently been given the unique opportunity to step back and reflect on my professional journey from a high-security environment. This unexpected pivot has taught me so much about risk management, regulatory compliance, and the importance of transparency in the financial sector. ⚖️",
+          opciones: [
+            "I have been arrested for fraud",
+            "I’ve been hired as a Lead Security Consultant for a major Swiss bank",
+            "I’m taking a sabbatical to study ethics and financial law at Harvard",
+            "I’ve been appointed as the new Head of Compliance for a crypto exchange"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I’m currently navigating some internal logistical challenges and prioritizing my personal bandwidth to ensure a high-quality output once I’m back at 100%. Taking this time to lean into wellness and embrace the process of recovery. #SelfCare #Transparency #WorkLifeBalance",
+          opciones: [
+            "I have diarrhea",
+            "I’m dealing with a server crash that’s slowing down my delivery speed",
+            "I'm restructuring my home office to improve my daily workflow",
+            "I’ve been hospitalized for exhaustion after a major product launch"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "Today, I made the difficult but necessary decision to sunset a legacy asset to optimize my digital ecosystem. 🚀 In this fast-paced industry, growth isn't just about what you add—it's about knowing when to declutter and streamline for maximum efficiency. By offboarding this specific data point, I've cleared the path for new, high-impact initiatives and a more agile workflow. 📈 It's all about the journey of continuous improvement. Sometimes you have to hit \"delete\" to make room for \"deliver.\" #Efficiency #DigitalTransformation #GrowthMindset #Productivity #Agile",
+          opciones: [
+            "I deleted a file",
+            "I fired a senior developer who was holding back the team's innovation",
+            "I shut down an underperforming department to save company costs",
+            "I erased all my social media history to start a new personal brand"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I recently took a two-hour intentional deep-dive into strategic stillness to recalibrate my mental bandwidth. In today’s hyper-accelerated market, prioritizing cognitive white space is the ultimate productivity hack for long-term sustainable growth. #Mindfulness #StrategicRest #LeadershipDevelopment",
+          opciones: [
+            "I spent two hours doing nothing",
+            "I attended a two-hour workshop on meditation and executive focus",
+            "I spent two hours waiting for a client who never showed up",
+            "I spent two hours researching market trends in a quiet room"
+          ],
+          correcta: 0
         }
       ];
 
       let fraseActual, opcionesMezcladas, indiceCorrecto;
       let yaRespondido = false;
+
+      // Corporate Ladder (Firebase Auth + Firestore)
+      let currentUser = null;
+      let synergyPoints = 0;
+      let synergyWriteQueue = Promise.resolve();
+
+      function getRankFromPoints(points) {
+        if (points >= 500) return "Untouchable CEO";
+        if (points >= 300) return "VP of Bullshit";
+        if (points >= 150) return "Middle Management Drone";
+        if (points >= 50) return "Junior Synergy Facilitator";
+        return "Unpaid Intern";
+      }
+
+      function updateLeftSidebarForUser(user, points) {
+        const avatarEl = document.getElementById('sidebar-avatar');
+        const nameEl = document.getElementById('sidebar-display-name');
+        const rankEl = document.getElementById('sidebar-rank');
+        const pointsEl = document.getElementById('synergy-points-value');
+        const labelEl = document.getElementById('synergy-points-label');
+
+        if (avatarEl && user && user.photoURL) avatarEl.src = user.photoURL;
+        if (nameEl && user) nameEl.textContent = user.displayName || user.email || "Linked Off";
+        if (rankEl && typeof points === "number") rankEl.textContent = getRankFromPoints(points);
+        if (pointsEl && typeof points === "number") pointsEl.textContent = String(points);
+        if (labelEl) labelEl.textContent = "Synergy Points";
+      }
+
+      function setBullshitSubmissionRestricted(isLoggedIn) {
+        const speakInput = document.getElementById('corporate-speak-input');
+        const truthInput = document.getElementById('truth-input');
+        const submitBtn = document.getElementById('bullshit-submit-btn');
+        if (!speakInput || !truthInput || !submitBtn) return;
+
+        speakInput.disabled = !isLoggedIn;
+        truthInput.disabled = !isLoggedIn;
+        submitBtn.disabled = !isLoggedIn;
+        submitBtn.textContent = isLoggedIn ? "Submit to the Void" : "Login to Submit Bullshit";
+      }
+
+      // Default to logged-out restrictions until Firebase tells us otherwise.
+      setBullshitSubmissionRestricted(false);
+
+      function awardSynergy(isCorrect) {
+        if (!currentUser) return;
+        const delta = isCorrect ? 10 : -5;
+
+        const db = window.__firebaseDb;
+        if (!db) return;
+
+        const uid = currentUser.uid;
+        const userRef = db.collection('users').doc(uid);
+
+        synergyWriteQueue = synergyWriteQueue
+          .then(async () => {
+            const snap = await userRef.get();
+            const current = snap.exists ? (snap.data().synergyPoints || 0) : synergyPoints;
+            const next = Math.max(0, current + delta);
+            synergyPoints = next;
+
+            updateLeftSidebarForUser(currentUser, next);
+            return userRef.set(
+              { synergyPoints: next, rank: getRankFromPoints(next) },
+              { merge: true }
+            );
+          })
+          .catch(() => {
+            // If Firestore fails, keep the UI update already applied.
+          });
+      }
+
+      // Wire Auth state + nav + suggestion restriction
+      (function wireFirebase() {
+        const auth = window.__firebaseAuth;
+        if (!auth) return;
+
+        const navMeBtn = document.getElementById('nav-me');
+
+        auth.onAuthStateChanged((user) => {
+          currentUser = user || null;
+
+          if (!user) {
+            synergyPoints = 0;
+            if (navMeBtn) navMeBtn.textContent = "Login";
+            setBullshitSubmissionRestricted(false);
+            // Keep sidebar placeholders when logged out.
+            return;
+          }
+
+          const pointsLoader = window.__firebaseDb
+            ? window.__firebaseDb.collection('users').doc(user.uid).get()
+            : Promise.resolve(null);
+
+          pointsLoader
+            .then((snap) => {
+              const points = (snap && snap.exists && typeof snap.data().synergyPoints === "number")
+                ? snap.data().synergyPoints
+                : 0;
+              synergyPoints = points;
+              updateLeftSidebarForUser(user, points);
+              setBullshitSubmissionRestricted(true);
+            })
+            .catch(() => {
+              synergyPoints = 0;
+              updateLeftSidebarForUser(user, 0);
+              setBullshitSubmissionRestricted(true);
+            });
+
+          if (navMeBtn) {
+            navMeBtn.textContent = "";
+            if (user.photoURL) {
+              const img = document.createElement('img');
+              img.src = user.photoURL;
+              img.alt = "Profile";
+              img.className = "h-6 w-6 rounded-full object-cover";
+              navMeBtn.appendChild(img);
+            } else {
+              navMeBtn.textContent = "Sign Out";
+            }
+            navMeBtn.title = "Sign Out";
+            navMeBtn.onclick = () => window.__firebaseAuth.signOut();
+          }
+        });
+
+        if (navMeBtn) {
+          navMeBtn.onclick = () => {
+            if (currentUser) return window.__firebaseAuth.signOut();
+            return window.__firebaseAuth.signInWithPopup(window.__firebaseGoogleProvider);
+          };
+        }
+      })();
 
       const fraseEl = document.getElementById('frase-corporativa');
       const opcionesEl = document.getElementById('opciones');
@@ -450,6 +714,8 @@
         });
 
         const correcto = (elegida === indiceCorrecto);
+        // Award/deduct synergy points (only when the user is logged in).
+        awardSynergy(correcto);
         const msg = document.createElement('div');
         msg.className =
           "text-xl sm:text-2xl font-extrabold px-5 py-4 rounded-xl border border-[#e0e0e0] bg-white shadow-sm shadow-black/5 " +
@@ -527,13 +793,38 @@
       const bullshitCard = document.getElementById('bullshit-card');
       const bullshitSubmit = document.getElementById('bullshit-submit-btn');
       if (bullshitSubmit) {
-        bullshitSubmit.addEventListener('click', () => {
-          showToast('Thanks! Our AI will ignore this shortly.');
-          if (bullshitCard) {
-            bullshitCard.classList.add('ring-2', 'ring-[#0a66c2]');
-            setTimeout(() => {
-              bullshitCard.classList.remove('ring-2', 'ring-[#0a66c2]');
-            }, 600);
+        bullshitSubmit.addEventListener('click', async () => {
+          if (!currentUser) {
+            showToast('Login to Submit Bullshit');
+            return;
+          }
+
+          const speakInput = document.getElementById('corporate-speak-input');
+          const truthInput = document.getElementById('truth-input');
+          const corporateSpeak = speakInput ? speakInput.value : "";
+          const truth = truthInput ? truthInput.value : "";
+
+          try {
+            const db = window.__firebaseDb;
+            if (!db) throw new Error("Missing Firestore");
+
+            await db.collection('suggestions').add({
+              uid: currentUser.uid,
+              name: currentUser.displayName || currentUser.email || "Linked Off",
+              corporateSpeak,
+              truth,
+              createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            showToast('Thanks! Our AI will ignore this shortly.');
+            if (bullshitCard) {
+              bullshitCard.classList.add('ring-2', 'ring-[#0a66c2]');
+              setTimeout(() => {
+                bullshitCard.classList.remove('ring-2', 'ring-[#0a66c2]');
+              }, 600);
+            }
+          } catch (e) {
+            showToast('Submission failed (HR said try again later).');
           }
         });
       }
