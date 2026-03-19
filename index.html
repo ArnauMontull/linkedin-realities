@@ -41,15 +41,22 @@
         </div>
 
         <nav class="hidden lg:flex items-center gap-2">
-          <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Home</button>
-          <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">My Network</button>
-          <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Jobs</button>
-          <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Messages</button>
-          <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Alerts</button>
-          <button type="button" class="text-sm font-semibold text-white bg-[#0a66c2] hover:bg-[#095aa0] transition-colors px-3 py-2 rounded-full">Me</button>
+          <button type="button" id="nav-home" data-toast="Home is where the corporate dreams go to die." class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Home</button>
+          <button type="button" id="nav-network" data-toast="My Network: mostly vibes, zero substance." class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">My Network</button>
+          <button type="button" id="nav-jobs" data-toast="Error: Career path not found" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Jobs</button>
+          <button type="button" id="nav-messages" data-toast="Messages are delivered in corporate silence." class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Messages</button>
+          <button type="button" id="nav-alerts" data-toast="Alerts loaded. None of them matter." class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-2 rounded-full">Alerts</button>
+          <button type="button" id="nav-me" data-toast="You're never retiring, keep scrolling." class="text-sm font-semibold text-white bg-[#0a66c2] hover:bg-[#095aa0] transition-colors px-3 py-2 rounded-full">Me</button>
         </nav>
       </div>
     </header>
+
+    <div
+      id="toast-container"
+      class="fixed top-20 right-4 sm:right-6 z-50 pointer-events-none"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
 
     <div class="grid flex-1 w-full max-w-screen-xl mx-auto lg:grid-cols-[225px_1fr_315px] gap-6 items-start justify-items-stretch px-4 sm:px-6">
       
@@ -58,10 +65,16 @@
           <div class="h-20 bg-[#0a66c2]/10"></div>
           <div class="px-3 pb-3 -mt-4">
             <div class="w-10 h-10 rounded-full bg-[#e0e0e0] border-2 border-white shadow-sm shadow-black/5"></div>
-            <div class="mt-2 font-extrabold text-black/85 text-[12px] leading-tight">Thought Leader</div>
+            <div class="mt-2 font-extrabold text-black/85 text-[12px] leading-tight">Linked Off</div>
             <div class="text-[11px] text-[#666666] font-medium mt-1 leading-tight">Connections</div>
             <div class="mt-2 flex items-center justify-between gap-2">
-              <div class="flex-1 bg-[#f3f2f0] border border-[#e0e0e0] rounded-md px-2 py-1 text-center">
+              <div
+                id="connections-tile"
+                data-toast="500 people who don't actually like you."
+                role="button"
+                tabindex="0"
+                class="flex-1 bg-[#f3f2f0] border border-[#e0e0e0] rounded-md px-2 py-1 text-center cursor-pointer hover:bg-[#eaf3ff] hover:border-[#0a66c2] transition-colors"
+              >
                 <div class="font-extrabold text-black/85 text-[12px]">500</div>
                 <div class="text-[10px] text-[#666666]">Connections</div>
               </div>
@@ -95,23 +108,51 @@
             <div class="w-10 h-10 rounded-full bg-[#e0e0e0] flex items-center justify-center text-[rgba(0,0,0,0.6)] font-semibold text-sm">TH</div>
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2 flex-wrap">
-                <div class="font-extrabold text-[rgba(0,0,0,0.9)] text-sm">Thought Leader</div>
+                <div class="font-extrabold text-[rgba(0,0,0,0.9)] text-sm">Linked Off</div>
                 <div class="text-xs font-semibold text-[#0a66c2] bg-[#eaf3ff] border border-[#d6e9ff] rounded-full px-2 py-0.5">Suggested</div>
               </div>
               <div class="text-sm text-[#666666] leading-relaxed">Enterprise Communication Brief</div>
             </div>
           </div>
 
-          <div id="frase-corporativa" class="text-xl sm:text-2xl md:text-3xl font-semibold text-[rgba(0,0,0,0.9)] min-h-[100px] leading-relaxed break-words text-center"></div>
+          <div id="frase-corporativa" class="text-xl sm:text-2xl md:text-3xl font-semibold text-[rgba(0,0,0,0.9)] min-h-[100px] leading-relaxed break-words text-center mb-6 sm:mb-7"></div>
 
           <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full"></div>
 
           <div class="flex items-center justify-between pt-3 mt-3 border-t border-[#e0e0e0]">
             <div class="flex items-center gap-2">
-              <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg">Like</button>
-              <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg">Comment</button>
-              <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg">Repost</button>
-              <button type="button" class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg">Send</button>
+              <button
+                type="button"
+                id="post-like"
+                data-toast="Validation dopamine hit +1 (Still depressed though)."
+                class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg cursor-pointer"
+              >
+                Like
+              </button>
+              <button
+                type="button"
+                id="post-comment"
+                data-toast="Spilled a comment +0 (HR ignored it immediately)."
+                class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg cursor-pointer"
+              >
+                Comment
+              </button>
+              <button
+                type="button"
+                id="post-repost"
+                data-toast="Reposted the corporate fantasy +1 (Now suffering)."
+                class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg cursor-pointer"
+              >
+                Repost
+              </button>
+              <button
+                type="button"
+                id="post-send"
+                data-toast="Sent the corporate whisper (Instant regret)."
+                class="text-sm font-semibold text-[#666666] hover:text-[#0a66c2] transition-colors px-2 py-1 rounded-lg cursor-pointer"
+              >
+                Send
+              </button>
             </div>
             <div class="text-xs font-medium text-[#666666]">For HR eyes only</div>
           </div>
@@ -133,11 +174,21 @@
             <div class="text-[10px] font-semibold text-[#666666]">Today</div>
           </div>
           <div class="px-3 pb-3 space-y-2">
-            <div class="p-2 rounded-lg bg-[#f3f2f0] border border-[#e0e0e0]">
+            <div
+              class="p-2 rounded-lg bg-[#f3f2f0] border border-[#e0e0e0]"
+              role="button"
+              tabindex="0"
+              data-toast="3,421 people pretending to care."
+            >
               <div class="text-[12px] font-extrabold text-black/85 leading-tight">Corporate Synergy</div>
               <div class="text-[10px] text-[#666666] mt-1">3,421 posts</div>
             </div>
-            <div class="p-2 rounded-lg bg-[#f3f2f0] border border-[#e0e0e0]">
+            <div
+              class="p-2 rounded-lg bg-[#f3f2f0] border border-[#e0e0e0]"
+              role="button"
+              tabindex="0"
+              data-toast="412 execs power-walking in silence."
+            >
               <div class="text-[12px] font-extrabold text-black/85 leading-tight">Executive Presence</div>
               <div class="text-[10px] text-[#666666] mt-1">412 posts</div>
             </div>
@@ -155,6 +206,40 @@
                 };
             </script>
             <script type="text/javascript" src="//www.highperformanceformat.com/ca180dbc281c29305e55419fd520b3ff/invoke.js"></script>
+        </div>
+
+        <div
+          id="bullshit-card"
+          class="bg-white border border-[#e0e0e0] rounded-lg shadow-sm shadow-black/5 px-4 py-4 mt-6"
+        >
+          <div class="font-extrabold text-black/85 text-sm mb-3">Contribute to the Bullshit</div>
+          <div class="space-y-3">
+            <div>
+              <div class="text-[11px] font-semibold text-[#666666] mb-1">Corporate Speak</div>
+              <input
+                id="corporate-speak-input"
+                type="text"
+                class="w-full bg-white border border-[#e0e0e0] rounded-lg px-3 py-2 text-sm text-[rgba(0,0,0,0.9)] outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2"
+                placeholder="Corporate Speak"
+              />
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold text-[#666666] mb-1">The Truth</div>
+              <input
+                id="truth-input"
+                type="text"
+                class="w-full bg-white border border-[#e0e0e0] rounded-lg px-3 py-2 text-sm text-[rgba(0,0,0,0.9)] outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2"
+                placeholder="The Truth"
+              />
+            </div>
+            <button
+              id="bullshit-submit-btn"
+              type="button"
+              class="w-full bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold text-sm py-2.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2"
+            >
+              Submit to the Void
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -342,6 +427,68 @@
       }
 
       mostrarNuevaPregunta();
+
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className =
+          "pointer-events-auto bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-sm text-[rgba(0,0,0,0.9)] shadow-sm shadow-black/10 transition-all duration-200 transform opacity-0 translate-y-1";
+        toast.textContent = message;
+        container.appendChild(toast);
+
+        requestAnimationFrame(() => {
+          toast.classList.remove('opacity-0', 'translate-y-1');
+          toast.classList.add('opacity-100', 'translate-y-0');
+        });
+
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-1');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2500);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 2900);
+      }
+
+      function wireToastElements() {
+        const nodes = document.querySelectorAll('[data-toast]');
+        nodes.forEach((node) => {
+          const message = node.getAttribute('data-toast');
+          if (!message) return;
+
+          node.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            showToast(message);
+          });
+
+          node.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            e.stopPropagation();
+            showToast(message);
+          });
+        });
+      }
+
+      wireToastElements();
+
+      const bullshitCard = document.getElementById('bullshit-card');
+      const bullshitSubmit = document.getElementById('bullshit-submit-btn');
+      if (bullshitSubmit) {
+        bullshitSubmit.addEventListener('click', () => {
+          showToast('Thanks! Our AI will ignore this shortly.');
+          if (bullshitCard) {
+            bullshitCard.classList.add('ring-2', 'ring-[#0a66c2]');
+            setTimeout(() => {
+              bullshitCard.classList.remove('ring-2', 'ring-[#0a66c2]');
+            }, 600);
+          }
+        });
+      }
     </script>
   </body>
 </html>
