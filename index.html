@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Realities: Parodia Oscura</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Anuncios sticky abajo */
+      #ad-bottom {
+        position: sticky;
+        bottom: 0;
+        z-index: 40;
+      }
+    </style>
+  </head>
+  <body class="bg-white min-h-screen flex flex-col">
+
+    <!-- Banner superior de anuncio -->
+    <div class="flex justify-center my-2">
+      <div class="w-[728px] h-[90px] bg-gray-100 border-2 border-dotted border-gray-400 flex items-center justify-center text-gray-600 text-sm font-bold uppercase">
+        ESPACIO PARA ANUNCIO
+        <!-- Aquí puedes pegar tu script de anuncio superior -->
+      </div>
+    </div>
+
+    <div class="flex flex-1 w-full max-w-screen-xl mx-auto">
+
+      <!-- Lateral izquierdo anuncio (oculto en móvil) -->
+      <div class="hidden lg:flex flex-col justify-start">
+        <div class="w-[160px] h-[600px] bg-gray-100 border-2 border-dotted border-gray-400 flex items-center justify-center text-gray-600 text-xs font-bold uppercase m-2">
+          ESPACIO PARA ANUNCIO
+          <!-- Aquí puedes pegar tu script de anuncio lateral izquierdo -->
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="flex-1 flex flex-col items-center justify-center py-6 px-2">
+
+        <div class="text-center mb-8 select-none">
+          <h1 class="text-4xl font-extrabold text-blue-800 mb-3 tracking-wide">LinkedIn Realities</h1>
+          <p class="text-lg font-medium text-gray-500">¿Qué hay detrás de la <span class="italic font-bold text-blue-600">frase corporativa</span>?</p>
+        </div>
+
+        <!-- Frase corporativa -->
+        <div id="frase-corporativa" class="text-2xl sm:text-3xl md:text-4xl font-semibold text-blue-900 bg-blue-50 border border-blue-200 py-6 px-2 rounded-lg shadow mb-6 transition-all min-h-[64px]">
+          <!-- Frase al azar aquí -->
+        </div>
+
+        <!-- Anuncio cuadrado entre pregunta y respuestas -->
+        <div class="w-full flex justify-center mb-6">
+          <div class="w-[300px] h-[250px] bg-gray-100 border-2 border-dotted border-gray-400 flex items-center justify-center text-gray-600 text-xs font-bold uppercase">
+            ESPACIO PARA ANUNCIO
+            <!-- Aquí puedes pegar tu script de anuncio cuadrado -->
+          </div>
+        </div>
+
+        <!-- Opciones -->
+        <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl mb-6">
+          <!-- Botones generados por JS -->
+        </div>
+
+        <!-- Resultado y siguiente -->
+        <div id="resultado" class="flex flex-col items-center space-y-4 mb-2">
+          <!-- JS rellena: Correcto/Incorrecto, botón siguiente, y compartir -->
+        </div>
+      </main>
+
+      <!-- Lateral derecho anuncio (oculto en móvil) -->
+      <div class="hidden lg:flex flex-col justify-start">
+        <div class="w-[160px] h-[600px] bg-gray-100 border-2 border-dotted border-gray-400 flex items-center justify-center text-gray-600 text-xs font-bold uppercase m-2">
+          ESPACIO PARA ANUNCIO
+          <!-- Aquí puedes pegar tu script de anuncio lateral derecho -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner inferior sticky para anuncio -->
+    <div id="ad-bottom" class="w-full flex justify-center bg-gray-100 border-t-2 border-dotted border-gray-400 h-[70px] items-center text-gray-600 text-xs font-bold uppercase mt-2">
+      ESPACIO PARA ANUNCIO
+      <!-- Aquí puedes pegar tu script de anuncio inferior sticky -->
+    </div>
+
+    <script>
+      // Diccionario editable de frases corporativas y significados reales
+      const frasesDiccionario = [
+        {
+          linkedin: "I’m passionate about supporting and mentoring the next generation of female leaders.",
+          opciones: [
+            "Me gustan las chicas jóvenes",
+            "Me gusta hacer mansplaining",
+            "Quiero ligar en la oficina",
+            "Soy un sociópata pero sé sonreír"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "I'm excited to pivot my career and take on new challenges in a dynamic environment.",
+          opciones: [
+            "Me han despedido (otra vez)",
+            "No tengo ni idea de lo que hago",
+            "Odio mi trabajo pero aparento entusiasmo",
+            "Me obligaron a escribir esto"
+          ],
+          correcta: 0
+        },
+        {
+          linkedin: "We’re committed to leveraging synergy to deliver value-added solutions.",
+          opciones: [
+            "No sabemos lo que vendemos",
+            "Juntamos dos departamentos para despedir gente",
+            "Queríamos usar palabras bonitas",
+            "Nadie entiende de qué hablamos"
+          ],
+          correcta: 1
+        },
+        // Puedes añadir más frases siguiendo esta estructura
+      ];
+
+      // STATE
+      let fraseActual, opcionesMezcladas, indiceCorrecto;
+      let yaRespondido = false;
+
+      // Elementos
+      const fraseEl = document.getElementById('frase-corporativa');
+      const opcionesEl = document.getElementById('opciones');
+      const resultadoEl = document.getElementById('resultado');
+
+      function obtenerFraseAleatoria() {
+        const idx = Math.floor(Math.random() * frasesDiccionario.length);
+        return frasesDiccionario[idx];
+      }
+
+      function mezclarOpciones(arr) {
+        // Fisher-Yates
+        const opciones = arr.map((v, i) => ({texto: v, index: i}));
+        for (let i = opciones.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+        }
+        return opciones;
+      }
+
+      function mostrarNuevaPregunta() {
+        yaRespondido = false;
+        resultadoEl.innerHTML = "";
+        fraseActual = obtenerFraseAleatoria();
+        fraseEl.textContent = "💼 " + fraseActual.linkedin;
+
+        // Mezcla las opciones y re-calcula cuál es la correcta
+        opcionesMezcladas = mezclarOpciones(fraseActual.opciones);
+        indiceCorrecto = opcionesMezcladas.findIndex(op => op.index === fraseActual.correcta);
+
+        // Renderizar los botones
+        opcionesEl.innerHTML = '';
+        opcionesMezcladas.forEach((opcion, i) => {
+          const btn = document.createElement('button');
+          btn.type = "button";
+          btn.className =
+            "rounded-lg border border-gray-200 bg-white hover:bg-blue-50 active:bg-blue-100 text-gray-800 px-4 py-3 w-full font-semibold shadow transition-all text-left text-base sm:text-lg";
+          btn.textContent = "🡆 "+opcion.texto;
+          btn.onclick = () => responder(i, btn);
+          opcionesEl.appendChild(btn);
+        });
+      }
+
+      function responder(elegida, btn) {
+        if (yaRespondido) return;
+        yaRespondido = true;
+
+        // Resalta todas las opciones
+        Array.from(opcionesEl.children).forEach((bot, i) => {
+          bot.classList.remove("border-blue-500", "bg-green-100", "bg-red-100", "border-red-400", "ring-2", "ring-blue-200");
+          if (i === indiceCorrecto) {
+            bot.classList.add("border-blue-500", "bg-green-100", "ring-2", "ring-blue-200");
+          }
+          if (i === elegida && i !== indiceCorrecto) {
+            bot.classList.add("border-red-400", "bg-red-100");
+          }
+          bot.disabled = true;
+        });
+
+        // Mensaje resultado
+        const correcto = (elegida === indiceCorrecto);
+        const msg = document.createElement('div');
+        msg.className = "text-xl font-bold " + (correcto ? "text-green-600" : "text-red-600");
+        msg.textContent = correcto ? "✅ ¡Correcto! ¡Eres un/a cínico/a de pro!" : "❌ Respuesta incorrecta. Pero seguro que lo harías mejor que RRHH.";
+        resultadoEl.innerHTML = "";
+        resultadoEl.appendChild(msg);
+
+        // Botón siguiente frase
+        const sig = document.createElement('button');
+        sig.className = "bg-blue-700 hover:bg-blue-800 text-white font-extrabold py-2 px-5 mt-2 rounded-lg shadow";
+        sig.textContent = "Siguiente Frase →";
+        sig.onclick = mostrarNuevaPregunta;
+        resultadoEl.appendChild(sig);
+
+        // Botón de viralidad
+        const viral = document.createElement('a');
+        const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (En la parodia oscura de LinkedIn)');
+        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://your-game-url.example.com`;
+        viral.target = "_blank";
+        viral.rel = "noopener";
+        viral.className = "block mt-3 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold px-4 py-2 rounded uppercase tracking-wider shadow-xl animate-bounce transition-all border border-yellow-600";
+        viral.textContent = "🙃 Compartir esta aberración en X/Twitter";
+        resultadoEl.appendChild(viral);
+      }
+
+      // Iniciar
+      mostrarNuevaPregunta();
+    </script>
+  </body>
+</html>
