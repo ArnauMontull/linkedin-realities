@@ -2,10 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="monetag" content="6f2a27931c452abb12c1030db4fa1144">    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LinkedIn Realities: Parodia Oscura</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
       /* Anuncios sticky abajo */
       #ad-bottom {
@@ -199,8 +200,7 @@
         // Botón de viralidad
         const viral = document.createElement('a');
         const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (En la parodia oscura de LinkedIn)');
-        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://your-game-url.example.com`;
-        viral.target = "_blank";
+        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://arnaumontull.github.io/linkedin-realities/`;        viral.target = "_blank";
         viral.rel = "noopener";
         viral.className = "block mt-3 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold px-4 py-2 rounded uppercase tracking-wider shadow-xl animate-bounce transition-all border border-yellow-600";
         viral.textContent = "🙃 Compartir esta aberración en X/Twitter";
