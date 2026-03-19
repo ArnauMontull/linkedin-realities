@@ -13,25 +13,22 @@
       }
     </style>
   </head>
-  <body class="bg-gradient-to-b from-red-50 via-white to-white min-h-screen flex flex-col">
+  <body class="bg-[#f3f2f0] min-h-screen flex flex-col font-[system-ui,-apple-system,sans-serif] text-black/85">
 
     <div class="flex flex-1 w-full max-w-screen-xl mx-auto">
-
-      <div class="hidden lg:flex flex-col justify-start w-[160px] m-2"></div>
-
       <main class="flex-1 flex flex-col items-center justify-center py-6 px-4">
 
         <div class="text-center mb-8 select-none mt-4">
-          <h1 class="text-4xl sm:text-5xl font-extrabold text-black mb-3 tracking-wide drop-shadow-sm">Linked Off: The Corporate Bullshit Antidote</h1>
-          <p class="text-lg sm:text-xl font-medium text-gray-700">Translating the corporate blah-blah-blah so you don’t have to. What the f*ck does it mean in the real world?</p>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-black/85 mb-3 tracking-wide">Linked Off: The Corporate Bullshit Antidote</h1>
+          <p class="text-lg sm:text-xl font-medium text-[#666666]">Translating the corporate blah-blah-blah so you don’t have to. What the f*ck does it mean in the real world?</p>
         </div>
 
-        <div id="frase-corporativa" class="text-2xl sm:text-3xl font-semibold text-white bg-black border-4 border-red-600 border-dashed py-8 px-6 rounded-2xl shadow-[8px_8px_0_rgba(239,68,68,0.35)] mb-8 w-full max-w-2xl text-center transition-all min-h-[100px] flex items-center justify-center">
+        <div id="frase-corporativa" class="text-2xl sm:text-3xl font-semibold text-black/85 bg-white border border-[#e0e0e0] py-10 px-6 rounded-lg mb-8 w-full max-w-2xl text-center transition-all min-h-[100px] flex items-center justify-center">
         </div>
 
         <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mb-8"></div>
 
-        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border-4 border-black bg-white/70 backdrop-blur rounded-2xl px-4 py-6"></div>
+        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border border-[#e0e0e0] bg-white rounded-lg px-4 py-6"></div>
 
         <div class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
@@ -39,8 +36,6 @@
         </div>
 
       </main>
-
-      <div class="hidden lg:flex flex-col justify-start w-[160px] m-2"></div>
     </div>
 
     <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
@@ -104,7 +99,7 @@
         yaRespondido = false;
         resultadoEl.innerHTML = "";
         fraseActual = obtenerFraseAleatoria();
-        fraseEl.textContent = "🤮 " + fraseActual.linkedin;
+        fraseEl.textContent = fraseActual.linkedin;
 
         opcionesMezcladas = mezclarOpciones(fraseActual.opciones);
         indiceCorrecto = opcionesMezcladas.findIndex(op => op.index === fraseActual.correcta);
@@ -114,7 +109,7 @@
           const btn = document.createElement('button');
           btn.type = "button";
           btn.className =
-            "rounded-2xl border-4 border-black bg-white hover:bg-red-50 hover:border-red-500 active:bg-red-100 text-gray-900 px-4 py-4 w-full font-extrabold shadow-[4px_4px_0_rgba(0,0,0,1)] transition-all text-left text-base sm:text-lg focus:outline-none";
+            "rounded-full bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-5 py-4 w-full transition-colors text-left text-base sm:text-lg focus:outline-none";
           btn.textContent = "🡆 "+opcion.texto;
           btn.onclick = () => responder(i, btn);
           opcionesEl.appendChild(btn);
@@ -126,35 +121,31 @@
         yaRespondido = true;
 
         Array.from(opcionesEl.children).forEach((bot, i) => {
-          bot.classList.remove(
-            "border-black", "bg-white",
-            "hover:bg-red-50", "hover:border-red-500", "active:bg-red-100",
-            "bg-green-100", "bg-red-100", "bg-gray-100",
-            "border-green-500", "border-red-500", "border-gray-600",
-            "ring-2", "ring-green-200", "ring-blue-200",
-            "opacity-50"
-          );
           if (i === indiceCorrecto) {
-            bot.classList.add("border-green-500", "bg-green-100", "ring-2", "ring-green-200");
+            bot.className =
+              "rounded-full bg-[#16a34a] text-white px-5 py-4 w-full transition-colors text-left text-base sm:text-lg";
           } else if (i === elegida && i !== indiceCorrecto) {
-            bot.classList.add("border-red-500", "bg-red-100");
+            bot.className =
+              "rounded-full bg-[#dc2626] text-white px-5 py-4 w-full transition-colors text-left text-base sm:text-lg";
           } else {
-             bot.classList.add("opacity-50", "border-gray-600", "bg-gray-100");
+            bot.className =
+              "rounded-full bg-white border border-[#e0e0e0] text-[#666666] px-5 py-4 w-full opacity-70 transition-colors text-left text-base sm:text-lg";
           }
           bot.disabled = true;
-          bot.classList.remove("hover:bg-red-50");
           bot.style.cursor = "default";
         });
 
         const correcto = (elegida === indiceCorrecto);
         const msg = document.createElement('div');
-        msg.className = "text-2xl font-black border-4 border-black bg-white px-4 py-3 rounded-2xl shadow-[4px_4px_0_rgba(0,0,0,1)] " + (correcto ? "text-green-700 border-green-600" : "text-red-700 border-red-600");
+        msg.className =
+          "text-2xl font-extrabold px-4 py-3 rounded-lg border border-[#e0e0e0] bg-white " +
+          (correcto ? "text-[#166534] border-[#22c55e]/40 bg-[#ecfdf5]" : "text-[#991b1b] border-[#ef4444]/40 bg-[#fef2f2]");
         msg.textContent = correcto ? "✅ Boom! You’re officially a corporate cynic!" : "❌ Oof... you actually fell for that? Try again, rookie.";
         resultadoEl.innerHTML = "";
         resultadoEl.appendChild(msg);
 
         const sig = document.createElement('button');
-        sig.className = "bg-black hover:bg-gray-900 text-white border-4 border-red-600 font-extrabold text-lg py-4 px-8 mt-4 rounded-2xl shadow-[6px_6px_0_rgba(239,68,68,0.35)] transition-transform hover:scale-[1.01]";
+        sig.className = "bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold text-lg py-3 px-8 mt-4 rounded-full transition-colors";
         sig.textContent = "Next Load of Crap →";
         sig.onclick = mostrarNuevaPregunta;
         resultadoEl.appendChild(sig);
@@ -164,7 +155,7 @@
         viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://arnaumontull.github.io/linkedin-realities/`;
         viral.target = "_blank";
         viral.rel = "noopener";
-        viral.className = "block mt-4 bg-black hover:bg-gray-900 text-white font-extrabold px-6 py-4 rounded-2xl border-4 border-black uppercase tracking-wider shadow-[6px_6px_0_rgba(0,0,0,1)] transition-transform hover:scale-[1.01] flex items-center gap-2";
+        viral.className = "block mt-4 bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-6 py-3 rounded-full uppercase tracking-wide transition-colors flex items-center gap-2";
         viral.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg> Spread this corporate poison on X`;
         resultadoEl.appendChild(viral);
       }
