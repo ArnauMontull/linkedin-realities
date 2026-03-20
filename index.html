@@ -35,6 +35,14 @@
         bottom: 0;
         z-index: 40;
       }
+      .points-pop {
+        animation: points-pop 320ms ease-in-out;
+      }
+      @keyframes points-pop {
+        0% { transform: scale(1); color: inherit; }
+        45% { transform: scale(1.2); color: #0a66c2; }
+        100% { transform: scale(1); color: inherit; }
+      }
     </style>
   </head>
   <body class="bg-[#f3f2f0] min-h-screen flex flex-col font-[system-ui,-apple-system,sans-serif] text-black/85 antialiased">
@@ -355,6 +363,7 @@
       let synergyWriteQueue = Promise.resolve();
       let questionAdvanceCount = 0;
       const COOKIE_CHOICE_KEY = "linkedoff_cookie_consent";
+      const GUEST_POINTS_KEY = "linkedoff_guest_synergy_points";
 
       function loadGoogleAnalytics() {
         if (window.__gaLoaded) return;
@@ -421,7 +430,7 @@
       function getRankFromPoints(points) {
         if (points >= 500) return "Untouchable CEO";
         if (points >= 300) return "VP of Bullshit";
-        if (points >= 150) return "Middle Management Drone";
+        if (points >= 150) return "Middle Management Survivor";
         if (points >= 50) return "Junior Synergy Facilitator";
         return "Unpaid Intern";
       }
@@ -433,11 +442,29 @@
         const pointsEl = document.getElementById('synergy-points-value');
         const labelEl = document.getElementById('synergy-points-label');
 
-        if (avatarEl && user && user.photoURL) avatarEl.src = user.photoURL;
-        if (nameEl && user) nameEl.textContent = user.displayName || user.email || "Linked Off";
+        if (avatarEl) avatarEl.src = (user && user.photoURL) ? user.photoURL : "";
+        if (nameEl) nameEl.textContent = user ? (user.displayName || user.email || "Linked Off") : "Linked Off";
         if (rankEl && typeof points === "number") rankEl.textContent = getRankFromPoints(points);
         if (pointsEl && typeof points === "number") pointsEl.textContent = String(points);
         if (labelEl) labelEl.textContent = "Synergy Points";
+      }
+
+      function animatePointsValue() {
+        const pointsEl = document.getElementById('synergy-points-value');
+        if (!pointsEl) return;
+        pointsEl.classList.remove('points-pop');
+        void pointsEl.offsetWidth;
+        pointsEl.classList.add('points-pop');
+      }
+
+      function getGuestPoints() {
+        const raw = localStorage.getItem(GUEST_POINTS_KEY);
+        const parsed = Number(raw);
+        return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
+      }
+
+      function setGuestPoints(value) {
+        localStorage.setItem(GUEST_POINTS_KEY, String(Math.max(0, value)));
       }
 
       function setBullshitSubmissionRestricted(isLoggedIn) {
@@ -456,11 +483,18 @@
       setBullshitSubmissionRestricted(false);
 
       function awardSynergy(isCorrect) {
-        if (!currentUser) return;
-        const delta = isCorrect ? 10 : -5;
+        const delta = isCorrect ? 10 : 0;
+        if (delta <= 0) return;
 
         const db = window.__firebaseDb;
-        if (!db) return;
+        if (!currentUser || !db) {
+          const nextGuestPoints = getGuestPoints() + delta;
+          synergyPoints = nextGuestPoints;
+          setGuestPoints(nextGuestPoints);
+          updateLeftSidebarForUser(null, nextGuestPoints);
+          animatePointsValue();
+          return;
+        }
 
         const uid = currentUser.uid;
         const userRef = db.collection('users').doc(uid);
@@ -469,10 +503,11 @@
           .then(async () => {
             const snap = await userRef.get();
             const current = snap.exists ? (snap.data().synergyPoints || 0) : synergyPoints;
-            const next = Math.max(0, current + delta);
+            const next = current + delta;
             synergyPoints = next;
 
             updateLeftSidebarForUser(currentUser, next);
+            animatePointsValue();
             return userRef.set(
               { synergyPoints: next, rank: getRankFromPoints(next) },
               { merge: true }
@@ -529,10 +564,10 @@
           currentUser = user || null;
 
           if (!user) {
-            synergyPoints = 0;
+            synergyPoints = getGuestPoints();
             renderLoginState(null);
             setBullshitSubmissionRestricted(false);
-            // Keep sidebar placeholders when logged out.
+            updateLeftSidebarForUser(null, synergyPoints);
             return;
           }
 
