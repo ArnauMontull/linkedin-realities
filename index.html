@@ -7,16 +7,19 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+    <script id="ga4-placeholder">
+      // GA4 is consent-gated. Replace if needed.
+      window.__gaMeasurementId = "G-1YTQEGW74B";
+    </script>
     <script>
-// Replace these placeholders with your Firebase project values.
-const firebaseConfig = {
+      const firebaseConfig = {
         apiKey: "AIzaSyAwYEuwFTLZltw2JJ6-jslPl4m9dxyT5B8",
         authDomain: "linkedoff-7b689.firebaseapp.com",
         projectId: "linkedoff-7b689",
         storageBucket: "linkedoff-7b689.firebasestorage.app",
         messagingSenderId: "121071844762",
         appId: "1:121071844762:web:cb48a4618ac12f2aa9ce23",
-        measurementId: "G-1YTQEGW74B" // Opcional, però el pots deixar
+        measurementId: "G-1YTQEGW74B"
       };
 
       firebase.initializeApp(firebaseConfig);
@@ -61,6 +64,7 @@ const firebaseConfig = {
           <button type="button" id="nav-alerts" data-toast="Alerts loaded. None of them matter." class="text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-colors px-2 py-2 rounded-full">Alerts</button>
           <button type="button" id="nav-me" class="text-sm font-semibold text-white bg-white/15 hover:bg-white/25 transition-colors px-3 py-2 rounded-full">Login</button>
         </nav>
+        <button type="button" id="nav-me-mobile" class="lg:hidden text-sm font-semibold text-white bg-white/15 hover:bg-white/25 transition-colors px-3 py-2 rounded-full">Login</button>
       </div>
     </header>
 
@@ -117,7 +121,7 @@ const firebaseConfig = {
 
         <div class="bg-white border border-[#e0e0e0] rounded-lg shadow-sm shadow-black/5 w-full max-w-2xl mb-8 px-4 sm:px-5 py-4 sm:py-5">
           <div class="flex items-start gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#e0e0e0] flex items-center justify-center text-[rgba(0,0,0,0.6)] font-semibold text-sm">TH</div>
+            <div class="w-10 h-10 rounded-full bg-[#0a66c2] flex items-center justify-center text-white font-semibold text-sm">off</div>
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2 flex-wrap">
                 <div class="font-extrabold text-[rgba(0,0,0,0.9)] text-sm">Linked Off</div>
@@ -172,7 +176,7 @@ const firebaseConfig = {
 
         <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5"></div>
 
-        <div class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
+        <div id="native-ad-slot" class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
           <div id="container-95fc3d93cf8d1521b557d3fafd204fec"></div>
         </div>
@@ -275,6 +279,33 @@ const firebaseConfig = {
 
 <script type='text/javascript' src='//pl28949500.profitablecpmratenetwork.com/b7/29/80/b729801eee384c5d02d0cc070b56de70.js'></script>
 
+    <div
+      id="cookie-banner"
+      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-2rem)] max-w-3xl bg-white border border-[#e0e0e0] rounded-lg shadow-md shadow-black/10 px-4 py-3 hidden"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+        <p class="text-sm text-[rgba(0,0,0,0.9)] leading-relaxed flex-1">
+          We use cookies to optimize our corporate synergy (and serve ads). HR requires you to accept.
+        </p>
+        <div class="flex items-center gap-2">
+          <button
+            id="cookie-decline"
+            type="button"
+            class="px-3 py-2 text-sm font-semibold rounded-full border border-[#e0e0e0] text-[#666666] hover:bg-[#f3f2f0] transition-colors"
+          >
+            Decline
+          </button>
+          <button
+            id="cookie-accept"
+            type="button"
+            class="px-3 py-2 text-sm font-semibold rounded-full bg-[#0a66c2] text-white hover:bg-[#095aa0] transition-colors"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>const frasesDiccionario = [
 { linkedin: `I am looking to maximize my professional output 📈 and achieve a high-impact release of my creative energy within the workplace. 💡`, opciones: [`I want to bust a nut at work`, `I'm going to scream in the supply closet`, `I need to drop a massive deuce on company time`, `I want to punch my monitor right now`], correcta: 0 },
 { linkedin: `The administrative professional at the reception desk possesses an exceptional level of aesthetic appeal and professional charisma. ✨👔`, opciones: [`The receptionist is a baddie.`, `I think the receptionist is stealing my pens`, `I'm trying to flirt to get free parking`, `I want to ask the intern for a kidney`], correcta: 0 },
@@ -322,6 +353,47 @@ const firebaseConfig = {
       let currentUser = null;
       let synergyPoints = 0;
       let synergyWriteQueue = Promise.resolve();
+      let questionAdvanceCount = 0;
+      const COOKIE_CHOICE_KEY = "linkedoff_cookie_consent";
+
+      function loadGoogleAnalytics() {
+        if (window.__gaLoaded) return;
+        const measurementId = window.__gaMeasurementId || (window.firebaseConfig && window.firebaseConfig.measurementId) || "G-XXXXXXXXXX";
+        if (!measurementId) return;
+
+        const gaScript = document.createElement("script");
+        gaScript.async = true;
+        gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", measurementId);
+        window.__gaLoaded = true;
+      }
+
+      function refreshAdSlots() {
+        const nativeSlot = document.getElementById("native-ad-slot");
+        if (nativeSlot) {
+          nativeSlot.innerHTML = "";
+          const nativeScript = document.createElement("script");
+          nativeScript.async = true;
+          nativeScript.setAttribute("data-cfasync", "false");
+          nativeScript.src = "https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js";
+          const nativeContainer = document.createElement("div");
+          nativeContainer.id = "container-95fc3d93cf8d1521b557d3fafd204fec";
+          nativeSlot.appendChild(nativeScript);
+          nativeSlot.appendChild(nativeContainer);
+        }
+
+        const bottomAd = document.getElementById("ad-bottom");
+        if (bottomAd && bottomAd.childNodes.length > 0) {
+          const existing = Array.from(bottomAd.childNodes);
+          bottomAd.innerHTML = "";
+          existing.forEach((node) => bottomAd.appendChild(node.cloneNode(true)));
+        }
+      }
 
       function getRankFromPoints(points) {
         if (points >= 500) return "Untouchable CEO";
@@ -394,13 +466,48 @@ const firebaseConfig = {
         if (!auth) return;
 
         const navMeBtn = document.getElementById('nav-me');
+        const navMeMobileBtn = document.getElementById('nav-me-mobile');
+
+        function renderLoginState(user) {
+          const buttons = [navMeBtn, navMeMobileBtn].filter(Boolean);
+          buttons.forEach((btn) => {
+            btn.textContent = "";
+            btn.onclick = null;
+          });
+
+          if (!user) {
+            buttons.forEach((btn) => {
+              btn.textContent = "Login";
+              btn.onclick = () => window.__firebaseAuth.signInWithPopup(window.__firebaseGoogleProvider);
+            });
+            return;
+          }
+
+          buttons.forEach((btn) => {
+            if (user.photoURL) {
+              const img = document.createElement('img');
+              img.src = user.photoURL;
+              img.alt = "Profile";
+              img.className = "h-6 w-6 rounded-full object-cover";
+              btn.appendChild(img);
+            } else {
+              btn.textContent = "Sign Out";
+            }
+            btn.title = "Sign Out";
+            btn.onmouseenter = () => {
+              if (btn.querySelector("img")) btn.classList.add("ring-2", "ring-white/60");
+            };
+            btn.onmouseleave = () => btn.classList.remove("ring-2", "ring-white/60");
+            btn.onclick = () => window.__firebaseAuth.signOut();
+          });
+        }
 
         auth.onAuthStateChanged((user) => {
           currentUser = user || null;
 
           if (!user) {
             synergyPoints = 0;
-            if (navMeBtn) navMeBtn.textContent = "Login";
+            renderLoginState(null);
             setBullshitSubmissionRestricted(false);
             // Keep sidebar placeholders when logged out.
             return;
@@ -425,28 +532,10 @@ const firebaseConfig = {
               setBullshitSubmissionRestricted(true);
             });
 
-          if (navMeBtn) {
-            navMeBtn.textContent = "";
-            if (user.photoURL) {
-              const img = document.createElement('img');
-              img.src = user.photoURL;
-              img.alt = "Profile";
-              img.className = "h-6 w-6 rounded-full object-cover";
-              navMeBtn.appendChild(img);
-            } else {
-              navMeBtn.textContent = "Sign Out";
-            }
-            navMeBtn.title = "Sign Out";
-            navMeBtn.onclick = () => window.__firebaseAuth.signOut();
-          }
+          renderLoginState(user);
         });
 
-        if (navMeBtn) {
-          navMeBtn.onclick = () => {
-            if (currentUser) return window.__firebaseAuth.signOut();
-            return window.__firebaseAuth.signInWithPopup(window.__firebaseGoogleProvider);
-          };
-        }
+        renderLoginState(null);
       })();
 
       const fraseEl = document.getElementById('frase-corporativa');
@@ -521,11 +610,19 @@ const firebaseConfig = {
         const sig = document.createElement('button');
         sig.className = "bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold text-lg py-3 px-8 mt-4 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2";
         sig.textContent = "Next Load of Crap →";
-        sig.onclick = mostrarNuevaPregunta;
+        sig.onclick = () => {
+          questionAdvanceCount += 1;
+          if (questionAdvanceCount % 4 === 0) {
+            refreshAdSlots();
+          }
+          mostrarNuevaPregunta();
+        };
         resultadoEl.appendChild(sig);
 
         const viral = document.createElement('a');
-        const fraseTxt = encodeURIComponent('"'+fraseActual.linkedin+'" (Linked Off: The Corporate Bullshit Antidote)');
+        const selectedTruth = opcionesMezcladas[elegida] ? opcionesMezcladas[elegida].texto : "";
+        const shareText = `My CEO says: "${fraseActual.linkedin}"\nTranslation: "${selectedTruth}"\nFind your corporate rank at https://thelinkedoff.com`;
+        const fraseTxt = encodeURIComponent(shareText);
         viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://thelinkedoff.com`;
         viral.target = "_blank";
         viral.rel = "noopener";
@@ -560,6 +657,41 @@ const firebaseConfig = {
           toast.remove();
         }, 2900);
       }
+
+      function initCookieConsent() {
+        const banner = document.getElementById("cookie-banner");
+        const acceptBtn = document.getElementById("cookie-accept");
+        const declineBtn = document.getElementById("cookie-decline");
+        if (!banner || !acceptBtn || !declineBtn) return;
+
+        const savedChoice = localStorage.getItem(COOKIE_CHOICE_KEY);
+        if (savedChoice === "accepted") {
+          loadGoogleAnalytics();
+          banner.classList.add("hidden");
+          return;
+        }
+        if (savedChoice === "declined") {
+          banner.classList.add("hidden");
+          return;
+        }
+
+        banner.classList.remove("hidden");
+
+        acceptBtn.addEventListener("click", () => {
+          localStorage.setItem(COOKIE_CHOICE_KEY, "accepted");
+          loadGoogleAnalytics();
+          banner.classList.add("hidden");
+          showToast("Cookies accepted. HR is pleased.");
+        });
+
+        declineBtn.addEventListener("click", () => {
+          localStorage.setItem(COOKIE_CHOICE_KEY, "declined");
+          banner.classList.add("hidden");
+          showToast("Cookies declined. Analytics stayed home.");
+        });
+      }
+
+      initCookieConsent();
 
       function wireToastElements() {
         const nodes = document.querySelectorAll('[data-toast]');
