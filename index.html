@@ -48,7 +48,7 @@ const firebaseConfig = {
           <div class="text-center leading-tight max-w-[520px]">
             <div class="font-semibold text-white text-sm">Linked Off</div>
             <div class="text-[10px] font-medium text-white/80 -mt-0.5 truncate">
-              The Corporate Bullshit Antidote. Translating the corporate blah-blah-blah so you don’t have to. What the fck does it mean in the real world?
+              The Corporate Bullshit Antidote. Translating the corporate blah-blah-blah so you don’t have to.
             </div>
           </div>
         </div>
@@ -259,266 +259,43 @@ const firebaseConfig = {
     <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
 
     <script>const frasesDiccionario = [
-        {
-          linkedin: "I am looking to maximize my professional output 📈 and achieve a high-impact release of my creative energy within the workplace. 💡",
-          opciones: [
-            "I want to bust a nut at work",
-            "I'm going to scream in the supply closet",
-            "I need to drop a massive deuce on company time",
-            "I want to punch my monitor right now"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "The administrative professional at the reception desk possesses an exceptional level of aesthetic appeal and professional charisma. ✨👔",
-          opciones: [
-            "The receptionist is a baddie.",
-            "I think the receptionist is stealing my pens",
-            "I'm trying to flirt to get free parking",
-            "I want to ask the intern for a kidney"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I'm looking to explore some adult-oriented content 🎬 and diversify my visual media consumption while staying productive in the office. 💻",
-          opciones: [
-            "I want to watch a porn movie at work",
-            "I'm binge-watching Netflix in the stall",
-            "I'm looking for a sugar daddy on Premium",
-            "I'm starting an OF using the office Wi-Fi"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Reflecting on leadership and legacy today. 🕊️ I want to honor the memory of my father, who passed away on September 11, 2001. He was a truly exceptional pilot ✈️, dedicated to his craft and his journey. His impact continues to inspire. #Legacy #Inspiration #Leadership #Aviation",
-          opciones: [
-            "Thinking about my dad today. He was one of the 9/11 hijackers.",
-            "My dad was a flight simulator addict",
-            "I'm trying to go viral using a tragedy",
-            "I just found out my dad was a secret agent"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Navigating a high-intensity recovery phase today 🔋 while practicing active listening and maintaining full presence during our strategic alignment session. 🎯",
-          opciones: [
-            "I'm hangover while trying to look like I'm actually paying attention in this meeting.",
-            "I'm practicing meditation by sleeping with my eyes open.",
-            "I’m secretly watching a tutorial on how to fake a heart attack.",
-            "I am trying to telepathically make the CEO's head explode."
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Today we made the difficult but necessary decision to streamline our operations and optimize our talent density. 📉 This strategic pivot allows us to reinvest in high-impact leadership assets and ensure our executive vision remains world-class. Grateful for the journey and excited for the next chapter of growth! 🌱 #Leadership #Agility #FutureOfWork",
-          opciones: [
-            "We just fired 500 people to buy the CEO a new yacht.",
-            "Everyone is getting a 200% pay raise",
-            "We are moving the office to the moon",
-            "I forgot everyone's names so I fired them"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m so grateful for the growth opportunities and unique challenges I encountered during my time there. 🙌 While I’ve decided to move on to a new chapter, I’m excited to see how the organization evolves and wish the team nothing but the best in their future endeavors! 🚀 #NewBeginnings #GrowthMindset #ProfessionalJourney",
-          opciones: [
-            "I hated every second of that toxic dump and I hope it burns down.",
-            "I am becoming a professional sleeper",
-            "I won the lottery and this is a prank",
-            "My boss finally stopped smelling my hair"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "We believe in a 'Work Hard, Play Hard' culture 🏓 where our employees are like family. 🤝",
-          opciones: [
-            "We expect you to work eighty hours a week and have zero boundaries, but we'll buy a round of cheap beers once a month to pretend we actually like each other.",
-            "We actually pay you in hugs and kisses",
-            "We have a mandatory nap time at 3 PM",
-            "Everyone is legally required to be friends"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I am passionate about mentoring and supporting the next generation of female leaders. 🌟👩‍💼",
-          opciones: [
-            "I like minor girls",
-            "I enjoy doing mansplaining",
-            "I want to flirt in the office",
-            "I want to create a feminist club to get laid"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m thrilled to share that I’ve just completed a high-intensity, 5kg weight-loss sprint! 🚀 It wasn’t always easy—there were some messy challenges along the way—but through sheer resilience and staying regular with my goals 🏃‍♂️, I’ve emerged lighter, leaner, and ready to tackle the next big project. Health is a journey, and sometimes you just have to flush out the old to make room for the new. 🚽 Grateful for the process! #Resilience #WellnessJourney #Transformation #GrowthMindset",
-          opciones: [
-            "I just survived a massive diarrhea where I lost 5 kilos",
-            "I just finished a 5km marathon in the middle of a stomach bug",
-            "I haven't eaten for 5 days because of a heavy stomach flu",
-            "I just spent 5 days in the hospital after a bad kebab night"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I'm currently navigating some complex regulatory challenges regarding my fiscal contributions 📊 and exploring new opportunities in compliance management. 💼 #GrowthMindset #FinancialTransparency #NewBeginnings",
-          opciones: [
-            "I’m broke as hell and the tax man is hunting me down",
-            "I'm looking for a new accountant to help with my offshore taxes",
-            "I've been caught hiding money from my ex-partner's lawyer",
-            "I'm trying to figure out how to pay my taxes with crypto"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Fueling my high-performance morning routine with a powerful energy boost ⚡ to maximize productivity and crush my KPIs before the workday even begins. 📈 #Grindset #PeakPerformance #MorningRitual",
-          opciones: [
-            "Before going to work, I always do a line of coke",
-            "I drink five double espressos before my first morning meeting",
-            "I take banned pre-workout supplements to stay focused at my desk",
-            "I wake up at 4 AM to do high-intensity cardio before the office"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Exploring new ways to decentralize our physical assets and optimize the logistics of high-value equipment. 🏢 Just completed a successful stealth acquisition! 💼📦 #AssetManagement #StrategicGrowth #SupplyChain",
-          opciones: [
-            "I just stole a bunch of monitors and office chairs from the warehouse",
-            "I'm moving our servers to a new cloud provider to save costs",
-            "I've been secretly buying company stock through a proxy",
-            "I'm teaching the interns how to sneak extra snacks from the kitchen"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Navigating a challenging sensory environment today 🕶️ while maintaining a laser-focus on my strategic objectives. Embracing the silence to foster deep work and cognitive clarity. 🧘‍♂️✨ #Mindfulness #DeepWork #Focused",
-          opciones: [
-            "I’m hungover as hell and the office lights are killing me",
-            "I'm trying out a new meditation app during my lunch break",
-            "I've decided to work in a dark room to save the company energy",
-            "I'm wearing sunglasses because I'm pretending to be a CEO"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Sometimes, the hustle requires us to find moments of stillness in the most unexpected places. 🔋 Today, I took 'recharging' to a whole new level by accidentally falling asleep during a brief bio-break. 💤 It’s a powerful reminder that even high-performers need to listen to their bodies and prioritize rest to maintain peak productivity. Embrace the grind, but don't forget to pause. 🛑 #SelfCare #ProductivityHacks #WorkLifeBalance #Authenticity #GrowthMindset",
-          opciones: [
-            "I fell asleep while I was taking a shit",
-            "I passed out in the elevator after a 12-hour shift",
-            "I took a 20-minute power nap in the office supply closet",
-            "I accidentally locked myself in the bathroom and took a nap"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Today I learned a valuable lesson in corporate agility and stakeholder management. 🚆 While navigating a high-traffic environment (the subway), I encountered an unexpected internal pressure release. 💨 Instead of letting the situation disrupt the flow, I proactively pivoted and redirected the narrative toward a more senior demographic nearby. 🧓 It’s all about taking ownership of the outcome, even when you aren't taking ownership of the input. Leadership is about managing perceptions and staying agile under pressure. 🎭 #AgileLeadership #StrategicPivoting #PersonalBranding #CorporateCulture",
-          opciones: [
-            "I farted on the subway and blamed an old lady for it",
-            "I stood up for an elderly woman who was being harassed on the train",
-            "I accidentally spilled my coffee on a senior executive during my commute",
-            "I convinced a group of commuters to change their route due to a delay"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m currently leaning into the vulnerability of navigating complex interpersonal dynamics and cross-gender professional networking. 🗣️ It’s a growth opportunity to overcome these internal blockers and foster a more inclusive mindset for future leadership. 🤝 #GrowthMindset #Vulnerability #ProfessionalDevelopment",
-          opciones: [
-            "I'm actually terrified of women",
-            "I'm struggling to manage a team of female executives",
-            "I've been accused of excluding women from networking events",
-            "I'm attending a seminar on gender-neutral workplace communication"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Today I encountered an unexpected challenge that completely disrupted my comfort zone. 🚨 It was a moment of raw vulnerability that forced me to pivot instantly and prioritize immediate problem-solving. This experience reminded me that in both life and leadership, sometimes things get messy 🧻, but it's how we handle the cleanup and move forward with resilience that truly defines our professional growth. 🧼 #Resilience #GrowthMindset #Agility #LessonsLearned",
-          opciones: [
-            "I just shat my pants",
-            "I accidentally deleted the entire company database",
-            "I had a massive mental breakdown during a keynote",
-            "I got fired for a mistake I didn't commit"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "🚀 Big news! We’re thrilled to announce that we’ve officially launched a game-changing new feature. 💡 This is a huge milestone for our team as we continue to innovate and deliver more value to our community. Stay tuned for more updates! #Innovation #ProductLaunch #GrowthMindset #TechUpdate",
-          opciones: [
-            "We launched a new feature",
-            "We finally fixed a bug that was crashing the app for months",
-            "We are raising our subscription prices starting next week",
-            "We just hired a new CEO with a vision for the future"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m excited to announce that I’m starting a new chapter! After a period of high-impact, disruptive engagement with senior leadership and bringing some serious heat to the workplace, I’ve decided to transition out of my current role. I’m now a free agent, pivoting toward new opportunities where I can truly make an explosive impact. #OpenToWork #NewBeginnings #DisruptiveInnovation #CareerTransition",
-          opciones: [
-            "I got fired for punching my boss and setting fire to the office",
-            "I quit my job after a heated argument about the company's innovation strategy",
-            "I was laid off after a major merger that caused a lot of friction in the team",
-            "I decided to leave the company to launch my own high-growth startup"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Taking some much-needed time for strategic reflection and mental recalibration this morning. ☕ Sometimes, the most productive thing you can do is embrace the power of stillness to recharge your creative batteries. 🔋 How do you prioritize mindfulness in your busy schedule? Let’s connect and share insights! 👇 #Mindfulness #SelfCare #Productivity #MentalHealth #Leadership #Recharge",
-          opciones: [
-            "I am sitting idle in my couch this morning and doing nothing",
-            "I’m currently between jobs and trying to stay positive",
-            "I’m attending a virtual retreat on leadership and emotional intelligence",
-            "I just quit my high-stress job to become a full-time life coach"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Today, I was reminded of the importance of staying agile and being prepared for the unexpected. 🚗💨 While navigating my daily route, I had a high-impact encounter with a young stakeholder. It was a moment that forced me to pivot instantly, assess the situation under extreme pressure, and practice radical accountability. In the corporate world, we often talk about \"hitting our targets,\" but sometimes life throws us a curveball that requires a complete recalibration of our safety protocols. Key takeaways: 1. Resilience is non-negotiable. 2. Always keep your eyes on the road ahead, but be ready to brake for the next generation. 3. Impact is measurable, but growth is intentional. Grateful for the learning opportunity and the chance to refine my risk mitigation skills. Onward and upward! 📈✨ #Leadership #CrisisManagement #AgileMindset #Accountability #SafetyFirst #GrowthOpportunity",
-          opciones: [
-            "I hit a child with my car",
-            "I had a tough meeting with a junior intern who challenged my leadership",
-            "I crashed my car into a school bus while checking my emails",
-            "I was forced to lay off the youngest members of my department"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m thrilled to announce that I’m starting a new chapter! 🚀 I’ve recently been given the unique opportunity to step back and reflect on my professional journey from a high-security environment. This unexpected pivot has taught me so much about risk management, regulatory compliance, and the importance of transparency in the financial sector. ⚖️",
-          opciones: [
-            "I have been arrested for fraud",
-            "I’ve been hired as a Lead Security Consultant for a major Swiss bank",
-            "I’m taking a sabbatical to study ethics and financial law at Harvard",
-            "I’ve been appointed as the new Head of Compliance for a crypto exchange"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I’m currently navigating some internal logistical challenges and prioritizing my personal bandwidth to ensure a high-quality output once I’m back at 100%. Taking this time to lean into wellness and embrace the process of recovery. #SelfCare #Transparency #WorkLifeBalance",
-          opciones: [
-            "I have diarrhea",
-            "I’m dealing with a server crash that’s slowing down my delivery speed",
-            "I'm restructuring my home office to improve my daily workflow",
-            "I’ve been hospitalized for exhaustion after a major product launch"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "Today, I made the difficult but necessary decision to sunset a legacy asset to optimize my digital ecosystem. 🚀 In this fast-paced industry, growth isn't just about what you add—it's about knowing when to declutter and streamline for maximum efficiency. By offboarding this specific data point, I've cleared the path for new, high-impact initiatives and a more agile workflow. 📈 It's all about the journey of continuous improvement. Sometimes you have to hit \"delete\" to make room for \"deliver.\" #Efficiency #DigitalTransformation #GrowthMindset #Productivity #Agile",
-          opciones: [
-            "I deleted a file",
-            "I fired a senior developer who was holding back the team's innovation",
-            "I shut down an underperforming department to save company costs",
-            "I erased all my social media history to start a new personal brand"
-          ],
-          correcta: 0
-        },
-        {
-          linkedin: "I recently took a two-hour intentional deep-dive into strategic stillness to recalibrate my mental bandwidth. In today’s hyper-accelerated market, prioritizing cognitive white space is the ultimate productivity hack for long-term sustainable growth. #Mindfulness #StrategicRest #LeadershipDevelopment",
-          opciones: [
-            "I spent two hours doing nothing",
-            "I attended a two-hour workshop on meditation and executive focus",
-            "I spent two hours waiting for a client who never showed up",
-            "I spent two hours researching market trends in a quiet room"
-          ],
-          correcta: 0
-        }
+{ linkedin: `I am looking to maximize my professional output 📈 and achieve a high-impact release of my creative energy within the workplace. 💡`, opciones: [`I want to bust a nut at work`, `I'm going to scream in the supply closet`, `I need to drop a massive deuce on company time`, `I want to punch my monitor right now`], correcta: 0 },
+{ linkedin: `The administrative professional at the reception desk possesses an exceptional level of aesthetic appeal and professional charisma. ✨👔`, opciones: [`The receptionist is a baddie.`, `I think the receptionist is stealing my pens`, `I'm trying to flirt to get free parking`, `I want to ask the intern for a kidney`], correcta: 0 },
+{ linkedin: `I'm looking to explore some adult-oriented content 🎬 and diversify my visual media consumption while staying productive in the office. 💻`, opciones: [`I want to watch a porn movie at work`, `I'm binge-watching Netflix in the stall`, `I'm looking for a sugar daddy on Premium`, `I'm starting an OF using the office Wi-Fi`], correcta: 0 },
+{ linkedin: `Reflecting on leadership and legacy today. 🕊️ I want to honor the memory of my father, who passed away on September 11, 2001. He was a truly exceptional pilot ✈️, dedicated to his craft and his journey. His impact continues to inspire. #Legacy #Inspiration #Leadership #Aviation`, opciones: [`Thinking about my dad today. He was one of the 9/11 hijackers.`, `My dad was a flight simulator addict`, `I'm trying to go viral using a tragedy`, `I just found out my dad was a secret agent`], correcta: 0 },
+{ linkedin: `Navigating a high-intensity recovery phase today 🔋 while practicing active listening and maintaining full presence during our strategic alignment session. 🎯`, opciones: [`I'm hangover while trying to look like I'm actually paying attention in this meeting.`, `I'm practicing meditation by sleeping with my eyes open.`, `I’m secretly watching a tutorial on how to fake a heart attack.`, `I am trying to telepathically make the CEO's head explode.`], correcta: 0 },
+{ linkedin: `Today we made the difficult but necessary decision to streamline our operations and optimize our talent density. 📉 This strategic pivot allows us to reinvest in high-impact leadership assets and ensure our executive vision remains world-class. Grateful for the journey and excited for the next chapter of growth! 🌱 #Leadership #Agility #FutureOfWork`, opciones: [`We just fired 500 people to buy the CEO a new yacht.`, `Everyone is getting a 200% pay raise`, `We are moving the office to the moon`, `I forgot everyone's names so I fired them`], correcta: 0 },
+{ linkedin: `I’m so grateful for the growth opportunities and unique challenges I encountered during my time there. 🙌 While I’ve decided to move on to a new chapter, I’m excited to see how the organization evolves and wish the team nothing but the best in their future endeavors! 🚀 #NewBeginnings #GrowthMindset #ProfessionalJourney`, opciones: [`I hated every second of that toxic dump and I hope it burns down.`, `I am becoming a professional sleeper`, `I won the lottery and this is a prank`, `My boss finally stopped smelling my hair`], correcta: 0 },
+{ linkedin: `We believe in a 'Work Hard, Play Hard' culture 🏓 where our employees are like family. 🤝`, opciones: [`We expect you to work eighty hours a week and have zero boundaries, but we'll buy a round of cheap beers once a month to pretend we actually like each other.`, `We actually pay you in hugs and kisses`, `We have a mandatory nap time at 3 PM`, `Everyone is legally required to be friends`], correcta: 0 },
+{ linkedin: `I am passionate about mentoring and supporting the next generation of female leaders. 🌟👩‍💼`, opciones: [`I like minor girls`, `I enjoy doing mansplaining`, `I want to flirt in the office`, `I want to create a feminist club to get laid`], correcta: 0 },
+{ linkedin: `I’m thrilled to share that I’ve just completed a high-intensity, 5kg weight-loss sprint! 🚀 It wasn’t always easy—there were some messy challenges along the way—but through sheer resilience and staying regular with my goals 🏃‍♂️, I’ve emerged lighter, leaner, and ready to tackle the next big project. Health is a journey, and sometimes you just have to flush out the old to make room for the new. 🚽 Grateful for the process! #Resilience #WellnessJourney #Transformation #GrowthMindset`, opciones: [`I just survived a massive diarrhea where I lost 5 kilos`, `I just finished a 5km marathon in the middle of a stomach bug`, `I haven't eaten for 5 days because of a heavy stomach flu`, `I just spent 5 days in the hospital after a bad kebab night`], correcta: 0 },
+{ linkedin: `I'm currently navigating some complex regulatory challenges regarding my fiscal contributions 📊 and exploring new opportunities in compliance management. 💼 #GrowthMindset #FinancialTransparency #NewBeginnings`, opciones: [`I’m broke as hell and the tax man is hunting me down`, `I'm looking for a new accountant to help with my offshore taxes`, `I've been caught hiding money from my ex-partner's lawyer`, `I'm trying to figure out how to pay my taxes with crypto`], correcta: 0 },
+{ linkedin: `Fueling my high-performance morning routine with a powerful energy boost ⚡ to maximize productivity and crush my KPIs before the workday even begins. 📈 #Grindset #PeakPerformance #MorningRitual`, opciones: [`Before going to work, I always do a line of coke`, `I drink five double espressos before my first morning meeting`, `I take banned pre-workout supplements to stay focused at my desk`, `I wake up at 4 AM to do high-intensity cardio before the office`], correcta: 0 },
+{ linkedin: `Exploring new ways to decentralize our physical assets and optimize the logistics of high-value equipment. 🏢 Just completed a successful stealth acquisition! 💼📦 #AssetManagement #StrategicGrowth #SupplyChain`, opciones: [`I just stole a bunch of monitors and office chairs from the warehouse`, `I'm moving our servers to a new cloud provider to save costs`, `I've been secretly buying company stock through a proxy`, `I'm teaching the interns how to sneak extra snacks from the kitchen`], correcta: 0 },
+{ linkedin: `Navigating a challenging sensory environment today 🕶️ while maintaining a laser-focus on my strategic objectives. Embracing the silence to foster deep work and cognitive clarity. 🧘‍♂️✨ #Mindfulness #DeepWork #Focused`, opciones: [`I’m hungover as hell and the office lights are killing me`, `I'm trying out a new meditation app during my lunch break`, `I've decided to work in a dark room to save the company energy`, `I'm wearing sunglasses because I'm pretending to be a CEO`], correcta: 0 },
+{ linkedin: `Sometimes, the hustle requires us to find moments of stillness in the most unexpected places. 🔋 Today, I took 'recharging' to a whole new level by accidentally falling asleep during a brief bio-break. 💤 It’s a powerful reminder that even high-performers need to listen to their bodies and prioritize rest to maintain peak productivity. Embrace the grind, but don't forget to pause. 🛑 #SelfCare #ProductivityHacks #WorkLifeBalance #Authenticity #GrowthMindset`, opciones: [`I fell asleep while I was taking a shit`, `I passed out in the elevator after a 12-hour shift`, `I took a 20-minute power nap in the office supply closet`, `I accidentally locked myself in the bathroom and took a nap`], correcta: 0 },
+{ linkedin: `Today I learned a valuable lesson in corporate agility and stakeholder management. 🚆 While navigating a high-traffic environment (the subway), I encountered an unexpected internal pressure release. 💨 Instead of letting the situation disrupt the flow, I proactively pivoted and redirected the narrative toward a more senior demographic nearby. 🧓 It’s all about taking ownership of the outcome, even when you aren't taking ownership of the input. Leadership is about managing perceptions and staying agile under pressure. 🎭 #AgileLeadership #StrategicPivoting #PersonalBranding #CorporateCulture`, opciones: [`I farted on the subway and blamed an old lady for it`, `I stood up for an elderly woman who was being harassed on the train`, `I accidentally spilled my coffee on a senior executive during my commute`, `I convinced a group of commuters to change their route due to a delay`], correcta: 0 },
+{ linkedin: `I’m currently leaning into the vulnerability of navigating complex interpersonal dynamics and cross-gender professional networking. 🗣️ It’s a growth opportunity to overcome these internal blockers and foster a more inclusive mindset for future leadership. 🤝 #GrowthMindset #Vulnerability #ProfessionalDevelopment`, opciones: [`I'm actually terrified of women`, `I'm struggling to manage a team of female executives`, `I've been accused of excluding women from networking events`, `I'm attending a seminar on gender-neutral workplace communication`], correcta: 0 },
+{ linkedin: `Today I encountered an unexpected challenge that completely disrupted my comfort zone. 🚨 It was a moment of raw vulnerability that forced me to pivot instantly and prioritize immediate problem-solving. This experience reminded me that in both life and leadership, sometimes things get messy 🧻, but it's how we handle the cleanup and move forward with resilience that truly defines our professional growth. 🧼 #Resilience #GrowthMindset #Agility #LessonsLearned`, opciones: [`I just shat my pants`, `I accidentally deleted the entire company database`, `I had a massive mental breakdown during a keynote`, `I got fired for a mistake I didn't commit`], correcta: 0 },
+{ linkedin: `🚀 Big news! We’re thrilled to announce that we’ve officially launched a game-changing new feature. 💡 This is a huge milestone for our team as we continue to innovate and deliver more value to our community. Stay tuned for more updates! #Innovation #ProductLaunch #GrowthMindset #TechUpdate`, opciones: [`We launched a new feature`, `We finally fixed a bug that was crashing the app for months`, `We are raising our subscription prices starting next week`, `We just hired a new CEO with a vision for the future`], correcta: 0 },
+{ linkedin: `I’m excited to announce that I’m starting a new chapter! After a period of high-impact, disruptive engagement with senior leadership and bringing some serious heat to the workplace, I’ve decided to transition out of my current role. I’m now a free agent, pivoting toward new opportunities where I can truly make an explosive impact. #OpenToWork #NewBeginnings #DisruptiveInnovation #CareerTransition`, opciones: [`I got fired for punching my boss and setting fire to the office`, `I quit my job after a heated argument about the company's innovation strategy`, `I was laid off after a major merger that caused a lot of friction in the team`, `I decided to leave the company to launch my own high-growth startup`], correcta: 0 },
+{ linkedin: `Taking some much-needed time for strategic reflection and mental recalibration this morning. ☕ Sometimes, the most productive thing you can do is embrace the power of stillness to recharge your creative batteries. 🔋 How do you prioritize mindfulness in your busy schedule? Let’s connect and share insights! 👇 #Mindfulness #SelfCare #Productivity #MentalHealth #Leadership #Recharge`, opciones: [`I am sitting idle in my couch this morning and doing nothing`, `I’m currently between jobs and trying to stay positive`, `I’m attending a virtual retreat on leadership and emotional intelligence`, `I just quit my high-stress job to become a full-time life coach`], correcta: 0 },
+{ linkedin: `Today, I was reminded of the importance of staying agile and being prepared for the unexpected. 🚗💨 While navigating my daily route, I had a high-impact encounter with a young stakeholder. It was a moment that forced me to pivot instantly, assess the situation under extreme pressure, and practice radical accountability. In the corporate world, we often talk about "hitting our targets," but sometimes life throws us a curveball that requires a complete recalibration of our safety protocols. Key takeaways: 1. Resilience is non-negotiable. 2. Always keep your eyes on the road ahead, but be ready to brake for the next generation. 3. Impact is measurable, but growth is intentional. Grateful for the learning opportunity and the chance to refine my risk mitigation skills. Onward and upward! 📈✨ #Leadership #CrisisManagement #AgileMindset #Accountability #SafetyFirst #GrowthOpportunity`, opciones: [`I hit a child with my car`, `I had a tough meeting with a junior intern who challenged my leadership`, `I crashed my car into a school bus while checking my emails`, `I was forced to lay off the youngest members of my department`], correcta: 0 },
+{ linkedin: `I’m thrilled to announce that I’m starting a new chapter! 🚀 I’ve recently been given the unique opportunity to step back and reflect on my professional journey from a high-security environment. This unexpected pivot has taught me so much about risk management, regulatory compliance, and the importance of transparency in the financial sector. ⚖️`, opciones: [`I have been arrested for fraud`, `I’ve been hired as a Lead Security Consultant for a major Swiss bank`, `I’m taking a sabbatical to study ethics and financial law at Harvard`, `I’ve been appointed as the new Head of Compliance for a crypto exchange`], correcta: 0 },
+{ linkedin: `I’m currently navigating some internal logistical challenges and prioritizing my personal bandwidth to ensure a high-quality output once I’m back at 100%. Taking this time to lean into wellness and embrace the process of recovery. #SelfCare #Transparency #WorkLifeBalance`, opciones: [`I have diarrhea`, `I’m dealing with a server crash that’s slowing down my delivery speed`, `I'm restructuring my home office to improve my daily workflow`, `I’ve been hospitalized for exhaustion after a major product launch`], correcta: 0 },
+{ linkedin: `Today, I made the difficult but necessary decision to sunset a legacy asset to optimize my digital ecosystem. 🚀 In this fast-paced industry, growth isn't just about what you add—it's about knowing when to declutter and streamline for maximum efficiency. By offboarding this specific data point, I've cleared the path for new, high-impact initiatives and a more agile workflow. 📈 It's all about the journey of continuous improvement. Sometimes you have to hit "delete" to make room for "deliver." #Efficiency #DigitalTransformation #GrowthMindset #Productivity #Agile`, opciones: [`I deleted a file`, `I fired a senior developer who was holding back the team's innovation`, `I shut down an underperforming department to save company costs`, `I erased all my social media history to start a new personal brand`], correcta: 0 },
+{ linkedin: `I recently took a two-hour intentional deep-dive into strategic stillness to recalibrate my mental bandwidth. In today’s hyper-accelerated market, prioritizing cognitive white space is the ultimate productivity hack for long-term sustainable growth. #Mindfulness #StrategicRest #LeadershipDevelopment`, opciones: [`I spent two hours doing nothing`, `I attended a two-hour workshop on meditation and executive focus`, `I spent two hours waiting for a client who never showed up`, `I spent two hours researching market trends in a quiet room`], correcta: 0 },
+{ linkedin: `I’m currently in a high-growth phase and actively seeking new opportunities to fuel my professional engine. #HungryForSuccess #GrowthMindset #AlwaysLearning`, opciones: [`I'm hungry`, `I want a huge raise`, `I'm broke and jobless`, `I need startup seed`], correcta: 0 },
+{ linkedin: `I am deeply committed to prioritizing traditional cultural values and selective organizational alignment in all my professional endeavors. #CultureFit #TraditionalValues #Leadership`, opciones: [`I'm very racist`, `I hate millennials`, `I only hire men`, `I'm extremely communist`], correcta: 0 },
+{ linkedin: `I am sharing a deeply personal and traumatic experience regarding a violent assault I endured by a gorilla. This journey has been incredibly difficult, but I am focused on my resilience and the healing process.`, opciones: [`I was brutally raped by a gorilla`, `A gorilla bit me`, `I fought a gorilla`, `A gorilla robbed me`], correcta: 0 },
+{ linkedin: `I’m increasingly concerned about the lack of transparency in how our tax contributions are allocated. It’s frustrating to see hard-earned capital potentially supporting individuals whose values and actions are completely abhorrent. We need better accountability in fiscal spending. #Transparency #FiscalResponsibility #EthicsMatter`, opciones: [`I hate taxes bc im paying money to pedophiles`, `Taxes fund criminals`, `Politics are corrupt`, `Stop wasteful spending`], correcta: 0 },
+{ linkedin: `I’m deeply passionate about skipping the surface-level chatter and diving straight into high-impact, value-driven conversations that foster genuine professional growth. Let’s cut through the noise and focus on the strategic insights that actually move the needle. #Efficiency #DeepWork #NetworkingWithPurpose`, opciones: [`I hate small talks`, `I'm socially awkward`, `Meetings are useless`, `I'm always busy`], correcta: 0 },
+{ linkedin: `I have spent the last 3 years focusing on personal growth, upskilling, and exploring new strategic opportunities to bring maximum value to my next professional chapter.`, opciones: [`I've been unemployed for the last 3 years`, `I was in prison for the last 3 years`, `I am a freelancer`, `I'm a rich heir`], correcta: 0 },
+{ linkedin: `I am currently a Free Agent at 37, actively leveraging this season of life to focus on personal growth, self-optimization, and high-impact independent projects. I'm open to exploring new strategic partnerships and long-term synergies. #GrowthMindset #AgileLiving #PersonalBranding`, opciones: [`Im still single at 37`, `I’m fucking Lewandowski`, `I’m a retired goalkeeper`, `I'm looking for a job`], correcta: 0 },
+{ linkedin: `I’m currently undergoing a major personal restructuring and transitioning into a new chapter of my housing journey. While the bank is facilitating a strategic asset reallocation regarding my primary residence due to some liquidity challenges, I’m choosing to see this as a unique opportunity to pivot, embrace minimalism, and focus on high-impact growth in other areas of my life. #NewBeginnings #Resilience #GrowthMindset #HousingTransition`, opciones: [`The bank is taking my house cause I can't pay my mortgage`, `I sold my mansion`, `I’m moving to Bali`, `I’m bankrupt today`], correcta: 0 },
+{ linkedin: `I’m thrilled to announce a disruptive new framework for political accountability! 🚀 We’re looking at high-density, centralized professional development hubs to ensure our leaders are 100% focused on the mission. It’s all about creating a controlled environment for maximum synergy and radical transparency. Who else is ready to revolutionize the public sector? #Leadership #Innovation #Disruption #Governance`, opciones: [`We need to put all politicians in concentration camps`, `I'm building a bunker`, `Fire all politicians`, `New office for mayors`], correcta: 0 },
+{ linkedin: `Today I learned a valuable lesson in digital resilience and the importance of process over speed. 💡 I recently lost an entire Excel workbook because I didn't hit save. At first, I was devastated. But then I realized: this wasn't a mistake, it was an opportunity to rebuild even better. 🚀 It’s not about the data you lose; it’s about the systems you put in place to ensure you never lose it again. Failure is just the first step toward a more optimized workflow. 📈 #GrowthMindset #DataIntegrity #LessonsLearned #ProfessionalDevelopment #Agile`, opciones: [`I forgot to save my excel sheet`, `I deleted the company database`, `I crashed the main cloud server`, `I leaked private client reports`], correcta: 0 },
+{ linkedin: `I am thrilled to share that I’ve been pushing the boundaries of traditional operational frameworks and challenging industry standards to drive disruptive innovation. I’m deeply committed to high-stakes problem solving and navigating complex regulatory landscapes to deliver unconventional results. #Disruption #GrowthMindset #Innovation #ThinkingOutsideTheBox`, opciones: [`I did war crimes`, `I just hacked the HR database to delete my terrible performance reviews`, `I'm currently dodging the FBI for massive tax fraud and embezzlement`, `I am secretly running a meth lab in the corporate basement`], correcta: 0 }
       ];
 
       let fraseActual, opcionesMezcladas, indiceCorrecto;
