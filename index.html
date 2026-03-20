@@ -133,6 +133,8 @@
 
           <div id="frase-corporativa" class="text-xl sm:text-2xl md:text-3xl font-semibold text-[rgba(0,0,0,0.9)] min-h-[100px] leading-relaxed break-words text-center mb-6 sm:mb-7"></div>
 
+          <div id="resultado" class="flex flex-col items-center space-y-4 mb-6 w-full text-center border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5 empty:hidden"></div>
+
           <div id="opciones" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full"></div>
 
           <div class="flex items-center justify-between pt-3 mt-3 border-t border-[#e0e0e0]">
@@ -173,8 +175,6 @@
             <div class="text-xs font-medium text-[#666666]">For HR eyes only</div>
           </div>
         </div>
-
-        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5 empty:hidden"></div>
 
         <div id="native-ad-slot" class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
@@ -582,8 +582,6 @@
       function mostrarNuevaPregunta() {
         yaRespondido = false;
         resultadoEl.innerHTML = "";
-        opcionesEl.classList.remove("hidden");
-        opcionesEl.style.display = "";
         fraseActual = obtenerFraseAleatoria();
         fraseEl.textContent = fraseActual.linkedin;
 
@@ -624,8 +622,6 @@
         const correcto = (elegida === indiceCorrecto);
         // Award/deduct synergy points (only when the user is logged in).
         awardSynergy(correcto);
-        opcionesEl.classList.add("hidden");
-        opcionesEl.style.display = "none";
         const msg = document.createElement('div');
         msg.className =
           "text-xl sm:text-2xl font-extrabold px-5 py-4 rounded-xl border border-[#e0e0e0] bg-white shadow-sm shadow-black/5 " +
