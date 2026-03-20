@@ -174,7 +174,7 @@
           </div>
         </div>
 
-        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center min-h-[120px] border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5"></div>
+        <div id="resultado" class="flex flex-col items-center space-y-4 mb-8 w-full max-w-2xl text-center border border-[#e0e0e0] bg-white rounded-xl px-4 py-7 shadow-sm shadow-black/5 empty:hidden"></div>
 
         <div id="native-ad-slot" class="w-full max-w-2xl flex justify-center mt-4 mb-8 min-h-[100px]">
           <script async="async" data-cfasync="false" src="https://pl28945930.profitablecpmratenetwork.com/95fc3d93cf8d1521b557d3fafd204fec/invoke.js"></script>
@@ -277,28 +277,28 @@
     <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
 </div> <div id="ad-bottom" class="w-full bg-transparent flex items-center justify-center py-3 rounded-t mt-4"></div>
 
-<script type='text/javascript' src='//pl28949500.profitablecpmratenetwork.com/b7/29/80/b729801eee384c5d02d0cc070b56de70.js'></script>
+<script id="ad-bottom-script" type='text/javascript' src='//pl28949500.profitablecpmratenetwork.com/b7/29/80/b729801eee384c5d02d0cc070b56de70.js'></script>
 
     <div
       id="cookie-banner"
-      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-2rem)] max-w-3xl bg-white border border-[#e0e0e0] rounded-lg shadow-md shadow-black/10 px-4 py-3 hidden"
+      class="fixed bottom-0 inset-x-0 z-[60] bg-[#f8f9fa] border-t border-[#d9dde3] shadow-[0_-4px_18px_rgba(0,0,0,0.08)] px-4 sm:px-6 py-3 hidden"
     >
-      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-        <p class="text-sm text-[rgba(0,0,0,0.9)] leading-relaxed flex-1">
+      <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+        <p class="text-sm text-[rgba(0,0,0,0.85)] leading-relaxed flex-1">
           We use cookies to optimize our corporate synergy (and serve ads). HR requires you to accept.
         </p>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 md:shrink-0">
           <button
             id="cookie-decline"
             type="button"
-            class="px-3 py-2 text-sm font-semibold rounded-full border border-[#e0e0e0] text-[#666666] hover:bg-[#f3f2f0] transition-colors"
+            class="px-4 py-2 text-sm font-semibold rounded-md border border-[#c7ced8] text-[#4b5563] bg-white hover:bg-[#f3f4f6] transition-colors"
           >
             Decline
           </button>
           <button
             id="cookie-accept"
             type="button"
-            class="px-3 py-2 text-sm font-semibold rounded-full bg-[#0a66c2] text-white hover:bg-[#095aa0] transition-colors"
+            class="px-4 py-2 text-sm font-semibold rounded-md bg-[#0a66c2] text-white hover:bg-[#095aa0] transition-colors"
           >
             Accept
           </button>
@@ -388,11 +388,34 @@
         }
 
         const bottomAd = document.getElementById("ad-bottom");
-        if (bottomAd && bottomAd.childNodes.length > 0) {
-          const existing = Array.from(bottomAd.childNodes);
+        const bottomScript = document.getElementById("ad-bottom-script");
+        if (bottomAd) {
           bottomAd.innerHTML = "";
-          existing.forEach((node) => bottomAd.appendChild(node.cloneNode(true)));
         }
+        if (bottomScript) {
+          const newBottomScript = document.createElement("script");
+          newBottomScript.type = "text/javascript";
+          newBottomScript.src = bottomScript.src;
+          bottomScript.replaceWith(newBottomScript);
+        }
+
+        // Refresh sidebar Adsterra iframe slots by recreating config + invoke scripts.
+        const sideAdWrappers = Array.from(document.querySelectorAll(".hidden.lg\\:flex .flex.flex-col.justify-start.items-center.pt-8"));
+        sideAdWrappers.forEach((wrapper) => {
+          if (!wrapper || !wrapper.querySelector("script")) return;
+          wrapper.innerHTML = "";
+
+          const cfgScript = document.createElement("script");
+          cfgScript.type = "text/javascript";
+          cfgScript.text = "atOptions = {'key':'ca180dbc281c29305e55419fd520b3ff','format':'iframe','height':600,'width':160,'params':{}};";
+
+          const invokeScript = document.createElement("script");
+          invokeScript.type = "text/javascript";
+          invokeScript.src = "//www.highperformanceformat.com/ca180dbc281c29305e55419fd520b3ff/invoke.js";
+
+          wrapper.appendChild(cfgScript);
+          wrapper.appendChild(invokeScript);
+        });
       }
 
       function getRankFromPoints(points) {
@@ -559,6 +582,8 @@
       function mostrarNuevaPregunta() {
         yaRespondido = false;
         resultadoEl.innerHTML = "";
+        opcionesEl.classList.remove("hidden");
+        opcionesEl.style.display = "";
         fraseActual = obtenerFraseAleatoria();
         fraseEl.textContent = fraseActual.linkedin;
 
@@ -599,6 +624,8 @@
         const correcto = (elegida === indiceCorrecto);
         // Award/deduct synergy points (only when the user is logged in).
         awardSynergy(correcto);
+        opcionesEl.classList.add("hidden");
+        opcionesEl.style.display = "none";
         const msg = document.createElement('div');
         msg.className =
           "text-xl sm:text-2xl font-extrabold px-5 py-4 rounded-xl border border-[#e0e0e0] bg-white shadow-sm shadow-black/5 " +
@@ -623,10 +650,14 @@
         const selectedTruth = opcionesMezcladas[elegida] ? opcionesMezcladas[elegida].texto : "";
         const shareText = `My CEO says: "${fraseActual.linkedin}"\nTranslation: "${selectedTruth}"\nFind your corporate rank at https://thelinkedoff.com`;
         const fraseTxt = encodeURIComponent(shareText);
-        viral.href = `https://twitter.com/intent/tweet?text=${fraseTxt}&url=https://thelinkedoff.com`;
+        viral.href = `https://x.com/intent/tweet?text=${fraseTxt}`;
         viral.target = "_blank";
         viral.rel = "noopener";
         viral.className = "block mt-4 bg-[#0a66c2] hover:bg-[#095aa0] text-white font-extrabold px-6 py-3 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 flex items-center gap-2";
+        viral.onclick = (ev) => {
+          ev.preventDefault();
+          window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(shareText), '_blank');
+        };
         viral.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg> Spread this corporate poison on X`;
         resultadoEl.appendChild(viral);
       }
